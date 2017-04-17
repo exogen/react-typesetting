@@ -3,7 +3,6 @@
 
 module.exports = function (config) {
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -12,13 +11,10 @@ module.exports = function (config) {
     frameworks: ['mocha'],
 
     // list of files / patterns to load in the browser
-    files: [
-      { pattern: 'src/**/*.spec.js', watched: false }
-    ],
+    files: [{ pattern: 'src/**/*.spec.js', watched: false }],
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -26,7 +22,7 @@ module.exports = function (config) {
       'src/**/*.js': ['webpack', 'sourcemap']
     },
 
-    webpack: require('./webpack.config'),
+    webpack: require('./webpack.config.test'),
 
     webpackMiddleware: {
       stats: 'minimal'
@@ -62,7 +58,7 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 50px 100px;
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background: rgb(232, 230, 224);
+  color: rgb(52, 50, 47);
+}
+
+@media (max-width: 800px) {
+  body {
+    padding: 1em 4%;
+  }
+}
+
+code {
+  font-family: Menlo, Consolas, Monaco, monospace;
+}
+
+a:link,
+a:visited {
+  color: #1289de;
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid rgba(18, 137, 222, 0.5);
+}
+
+.small-caps { font-family: 'Charter SC', serif }
+.pull-double { margin-left: -0.38em }
+.push-double { margin-right: 0.38em }
+.pull-single { margin-left: -0.15em }
+.push-single { margin-right: 0.15em }
+.pull-T, .pull-V, .pull-W, .pull-Y { margin-left: -0.07em }
+.push-T, .push-V, .push-W, .push-Y { margin-right: 0.07em }
+.pull-C, .pull-O, .pull-c, .pull-o { margin-left: -0.04em }
+.push-C, .push-O, .push-c, .push-o { margin-right: 0.04em }
+.pull-A { margin-left: -0.03em }
+.push-A { margin-right: 0.03em }

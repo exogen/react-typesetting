@@ -37,10 +37,6 @@ jspm_packages
 .node_repl_history
 
 # Transpiled JavaScript
-lib
+/lib
+/lib-es
 
-# Bundled JavaScript
-dist
-
-# next.js build output
-.next

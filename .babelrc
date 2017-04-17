@@ -1,3 +1,17 @@
 {
-  "presets": ["next/babel"]
+  "env": {
+    "development": {
+      "presets": ["es2015", "react", "stage-2"],
+    },
+    "production": {
+      "presets": ["es2015", "react", "stage-2"]
+    },
+    "es:development": {
+      "presets": [["es2015", { "modules": false }], "react", "stage-2"],
+      "plugins": ["react-hot-loader/babel"]
+    },
+    "es:production": {
+      "presets": [["es2015", { "modules": false }], "react", "stage-2"]
+    }
+  }
 }

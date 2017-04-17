@@ -1,7 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react'
+import React, { PureComponent } from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 import { DraggableCore } from 'react-draggable'
 import styled from 'styled-components'
+
+const NOOP = function () {}
 
 const Handle = styled.div`
   position: absolute;
@@ -37,7 +40,7 @@ const Handle = styled.div`
   }
 `
 
-export const ResizableHandle = (props) => (
+export const ResizableHandle = props => (
   <DraggableCore {...props}>
     <Handle />
   </DraggableCore>
@@ -50,10 +53,7 @@ export default class Resizable extends PureComponent {
     onStop: PropTypes.func,
     onResize: PropTypes.func,
     style: PropTypes.object,
-    children: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.func
-    ])
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
   }
 
   static defaultProps = {
@@ -69,8 +69,15 @@ export default class Resizable extends PureComponent {
   }
 
   componentDidMount () {
+    // Adding this empty event listener fixes the window scrolling while
+    // a handle is being dragged.
+    window.addEventListener('touchmove', NOOP)
     const actualWidth = this.getActualWidth()
     this.setState({ actualWidth })
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('touchmove', NOOP)
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -127,13 +134,18 @@ export default class Resizable extends PureComponent {
     const { attemptedWidth } = this.state
     const { onStart, onStop, onDrag } = this
     return (
-      <div className={className} style={{
-        ...style,
-        position: style.position === 'absolute' ? 'absolute' : 'relative',
-        width: attemptedWidth
-      }}>
+      <div
+        className={className}
+        style={{
+          ...style,
+          position: style.position === 'absolute' ? 'absolute' : 'relative',
+          width: attemptedWidth
+        }}
+      >
         <ResizableHandle onStart={onStart} onStop={onStop} onDrag={onDrag} />
-        {typeof children === 'function' ? children(attemptedWidth) : children}
+        {typeof children === 'function'
+          ? children(attemptedWidth)
+          : React.cloneElement(children)}
       </div>
     )
   }

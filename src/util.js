@@ -91,9 +91,10 @@ export function replaceNodeWithText (node, replacement) {
       parentNode.removeChild(nextSibling)
       summary.removed.push(nextSibling)
     } else {
-      nextSibling.nodeValue = (typeof replacement === 'string'
-        ? replacement
-        : replacement.nodeValue) + nextSibling.nodeValue
+      nextSibling.nodeValue =
+        (typeof replacement === 'string'
+          ? replacement
+          : replacement.nodeValue) + nextSibling.nodeValue
       summary.updated.push(nextSibling)
     }
   }
