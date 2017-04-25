@@ -4,7 +4,6 @@ import { getLines, getLineWidth } from '../util'
 
 /**
  * Tighten the spacing and font size of a run of text to prevent wrapping lines.
- * If a new line can be avoided by compressing the text, the spacing
  */
 export default class TightenText extends PureComponent {
   static propTypes = {
@@ -13,8 +12,8 @@ export default class TightenText extends PureComponent {
      */
     minFontSize: PropTypes.number.isRequired,
     /**
-      * Minimum `letter-spacing` value in ems.
-      */
+     * Minimum `letter-spacing` value in ems.
+     */
     minLetterSpacing: PropTypes.number.isRequired,
     /**
      * Minimum `word-spacing` value in ems.
@@ -143,6 +142,11 @@ export default class TightenText extends PureComponent {
     }
   }
 
+  /**
+   * This is much simpler to perform synchronously by looping, adjusting, and
+   * measuring all in one shot. In fact, this used to be implemented that way.
+   * This way feels like being a better DOM & React citizen.
+   */
   adjustFit (lines, prevState) {
     const { index, bestIndex, low, high } = this.state
     if (index === 0) {

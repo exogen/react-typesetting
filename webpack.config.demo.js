@@ -12,6 +12,7 @@ module.exports = env => ({
     publicPath: '/dist/'
   },
   devServer: {
+    port: 3000,
     contentBase: path.join(__dirname, 'docs'),
     compress: true,
     publicPath: '/dist/',
@@ -22,7 +23,7 @@ module.exports = env => ({
       errors: true
     }
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

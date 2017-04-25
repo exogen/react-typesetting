@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "npm run build:lib && npm run build:lib-es && npm run build:demo && npm run build:docs",
-    "build:demo": "BABEL_ENV=es:production webpack -p --env.production --config=webpack.config.demo.js",
+    "build:demo": "BABEL_ENV=es:production webpack --env.production --config=webpack.config.demo.js",
     "build:docs": "npm run build:docs:components && npm run build:docs:toc",
     "build:docs:components": "react-docgen --pretty --exclude '**/*.spec.js' src/components | scripts/component-docs.js | scripts/update-docs.js docs/README.md",
     "build:docs:toc": "doctoc --github --notitle docs/README.md",
@@ -74,6 +74,7 @@
     "standard": "^10.0.2",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",
+    "webpack-dashboard": "next",
     "webpack-dev-server": "^2.4.2"
   },
   "standard": {
