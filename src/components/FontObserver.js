@@ -28,7 +28,7 @@ import FontFaceObserver from 'fontfaceobserver'
  * Notify the rendering component when all fonts have loaded (or timed out).
  * If the handler calls `setState`, then even components not wrapped by
  * `FontObserver` will potentially be re-rendered (if their `shouldComponentUpdate`
- * methd allows it).
+ * method allows it).
  *
  *
  * ```jsx

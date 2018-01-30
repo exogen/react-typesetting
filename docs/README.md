@@ -363,7 +363,6 @@ dependencies like jQuery. Seriously, don’t use this.
 ## TightenText
 
 Tighten the spacing and font size of a run of text to prevent wrapping lines.
-If a new line can be avoided by compressing the text, the spacing
 
 ### Props
 
