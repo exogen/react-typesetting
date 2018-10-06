@@ -32,10 +32,10 @@ const defaultFormatter = value => `${value}em`;
  * If so, then a binary search is performed (with at most `maxIterations`) to
  * find the best fit.
  *
- * By default, [react-resize-detector](https://npm.im/react-resize-detector) is
- * used to automatically detect reflows that necessitate refitting the text. By
- * specifying the `reflowKey` prop, you can instead take manual control by
- * changing the prop whenever you’d like the component to update.
+ * By default, element resizes that may necessitate refitting the text are
+ * automatically detected. By specifying the `reflowKey` prop, you can instead
+ * take manual control by changing the prop whenever you’d like the component to
+ * update.
  *
  * Note that unlike with typical justified text, the fit adjustments must apply
  * to all lines of the text, not just the lines that need to be tightened,

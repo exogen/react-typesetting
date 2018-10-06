@@ -22,10 +22,10 @@ let _nbspIncubator;
  * children. Spaces will be converted to non-breaking spaces until the given
  * minimum width or the maximum number of substitutions is reached.
  *
- * By default, [react-resize-detector](https://npm.im/react-resize-detector) is
- * used to automatically detect reflows that necessitate recomputing the line
- * widths. By specifying the `reflowKey` prop, you can instead take manual
- * control by changing the prop whenever you’d like the component to update.
+ * By default, element resizes that may necessitate recomputing line widths are
+ * automatically detected. By specifying the `reflowKey` prop, you can instead
+ * take manual control by changing the prop whenever you’d like the component to
+ * update.
  */
 export default class PreventWidows extends React.PureComponent {
   hostRef = React.createRef();
