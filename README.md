@@ -34,8 +34,8 @@ update.
 Note that unlike with typical justified text, the fit adjustments must apply
 to all lines of the text, not just the lines that need to be tightened,
 because there is no way to target individual wrapped lines. Thus, this
-component is best using sparingly for small amounts of text like titles or
-labels.
+component is best used sparingly for typographically important short runs
+of text, like titles or labels.
 
 ### Props
 
