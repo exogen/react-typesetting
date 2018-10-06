@@ -96,7 +96,11 @@ export default class TightenText extends React.PureComponent {
      * A function to call when layout has been recomputed and the text is done
      * refitting.
      */
-    onReflow: PropTypes.func
+    onReflow: PropTypes.func,
+    /**
+     * The content to render.
+     */
+    children: PropTypes.node
   };
 
   static defaultProps = {
@@ -110,10 +114,6 @@ export default class TightenText extends React.PureComponent {
   innerRef = React.createRef();
   isTightened = false;
   reflowScheduled = false;
-
-  state = {
-    initialized: false
-  };
 
   scheduleReflow(snapshot) {
     const { reflowTimeout, disabled } = this.props;
@@ -169,7 +169,7 @@ export default class TightenText extends React.PureComponent {
    * Adjust the word spacing, letter spacing, and font size applied to
    * `innerNode` in order to minimize the number of wrapped lines and the amount
    * of overflow. Styles are updated directly on `innerNode` without using
-   * `setState` – this should be okay because this component owns `innerNode`
+   * `setState` - this should be okay because this component owns `innerNode`
    * and does not alter it in any way via React. If React decides to replace
    * `innerNode`, then it should call `componentDidUpdate` and this method will
    * reset and recalculate the styles anyway.
@@ -227,7 +227,7 @@ export default class TightenText extends React.PureComponent {
         // on to letter spacing.
         this.updateStyle("fontSize", 1);
         if (measure() === binarySearch.TOO_HIGH) {
-          const fontSize = binarySearch({
+          binarySearch({
             lowerBound: minFontSize,
             upperBound: 1,
             maxIterations,
@@ -280,7 +280,6 @@ export default class TightenText extends React.PureComponent {
 
   componentDidMount() {
     this.scheduleReflow();
-    // this.setState({ initialized: true });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -296,7 +295,6 @@ export default class TightenText extends React.PureComponent {
 
   render() {
     const { className, style, reflowKey, children } = this.props;
-    const { initialized } = this.state;
     const outerStyle = style ? { ...defaultStyle, ...style } : defaultStyle;
     return (
       <span className={className} style={outerStyle} ref={this.outerRef}>

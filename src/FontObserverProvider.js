@@ -47,7 +47,11 @@ export default class FontObserverProvider extends React.Component {
      * `FontFaceObserver`, to be used for all fonts that do not specify their
      * own `timeout`.
      */
-    timeout: PropTypes.number
+    timeout: PropTypes.number,
+    /**
+     * The content that will have access to font loading status via context.
+     */
+    children: PropTypes.node
   };
 
   mounted = false;

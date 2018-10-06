@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const style = {
   display: "block",
@@ -33,8 +34,13 @@ const shrinkStyle = {
   height: "200%"
 };
 
-export default class ResizeObserverComponent extends React.PureComponent {
-  static displayName = "ResizeObserver";
+export default class ResizeObserver extends React.PureComponent {
+  static propTypes = {
+    /**
+     * A function to call when the element size changes.
+     */
+    onResize: PropTypes.func
+  };
 
   hostRef = React.createRef();
   expandRef = React.createRef();

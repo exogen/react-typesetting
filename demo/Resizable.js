@@ -75,6 +75,7 @@ export const ResizableHandle = ({ title, hint, hasBeenDragged, ...props }) => (
 
 export default class Resizable extends React.PureComponent {
   static propTypes = {
+    className: PropTypes.string,
     initialWidth: PropTypes.number,
     onStart: PropTypes.func,
     onStop: PropTypes.func,
@@ -135,7 +136,6 @@ export default class Resizable extends React.PureComponent {
     const actualWidth = this.getActualWidth();
     if (actualWidth !== this.actualWidth) {
       if (actualWidth != null && this.props.onResize) {
-        const deltaX = actualWidth - this.actualWidth;
         this.props.onResize({
           width: actualWidth,
           deltaX: actualWidth - this.actualWidth

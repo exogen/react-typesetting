@@ -169,7 +169,7 @@ export default class App extends React.Component {
               <p>
                 <PreventWidows>
                   Many <abbr>HTML</abbr> typesetting helpers implement this in a
-                  naïve way – for example, by always joining the last word with
+                  naïve way – for example, by always joining the last word with
                   a{" "}
                   <a
                     href="https://en.wikipedia.org/wiki/Non-breaking_space"
@@ -300,9 +300,9 @@ export default class App extends React.Component {
                           }}
                         >
                           {font.family}
-                          {font.weight ? ` • ${font.weight}` : ""}
-                          {font.style ? ` • ${font.style}` : ""}
-                          {font.stretch ? ` • ${font.stretch}` : ""}
+                          {font.weight ? ` • ${font.weight}` : ""}
+                          {font.style ? ` • ${font.style}` : ""}
+                          {font.stretch ? ` • ${font.stretch}` : ""}
                         </span>
                       </li>
                     ))

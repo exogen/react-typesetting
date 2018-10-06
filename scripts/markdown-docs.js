@@ -157,9 +157,11 @@ function renderValue(value, indent = 0) {
     return value.value;
   }
   if (value.value.match(/^[ \d./*+-]*$/)) {
+    // eslint-disable-next-line no-eval
     return escape("" + eval(value.value));
   }
   if (value.value.match(/^"([^"]|[\\"])+"$/)) {
+    // eslint-disable-next-line no-eval
     return escape(eval(value.value)).replace(/./g, match => {
       return CODE_CHARS[match] || match;
     });

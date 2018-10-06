@@ -100,7 +100,11 @@ export default class PreventWidows extends React.PureComponent {
      * A function to call when layout has been recomputed and space substitution
      * is done.
      */
-    onReflow: PropTypes.func
+    onReflow: PropTypes.func,
+    /**
+     * The content to render.
+     */
+    children: PropTypes.node
   };
 
   static defaultProps = {
@@ -110,10 +114,6 @@ export default class PreventWidows extends React.PureComponent {
   };
 
   undoFunctions = [];
-
-  state = {
-    initialized: false
-  };
 
   handleResize = () => {
     debug("Detected resize, forcing update");
@@ -253,7 +253,6 @@ export default class PreventWidows extends React.PureComponent {
 
   componentDidMount() {
     this.scheduleReflow();
-    // this.setState({ initialized: true });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -269,7 +268,6 @@ export default class PreventWidows extends React.PureComponent {
 
   render() {
     const { className, style, reflowKey, children } = this.props;
-    const { initialized } = this.state;
     return (
       <span className={className} style={style} ref={this.hostRef}>
         {children}
