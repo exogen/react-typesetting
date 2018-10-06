@@ -285,7 +285,7 @@ export default class App extends React.Component {
                 </PreventWidows>
               </p>
 
-              <ul style={{ listStyle: "none " }}>
+              <ul style={{ listStyle: "none", padding: 0 }}>
                 <FontObserver>
                   {({ fonts }) =>
                     fonts.map((font, i) => (
@@ -309,6 +309,20 @@ export default class App extends React.Component {
                   }
                 </FontObserver>
               </ul>
+            </section>
+            <section>
+              <SectionTitle>Documentation</SectionTitle>
+              <p>
+                All options are documented in the{" "}
+                <a
+                  href="https://github.com/exogen/react-typesetting"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  README
+                </a>
+                .
+              </p>
             </section>
           </main>
         </FontObserver.Provider>
