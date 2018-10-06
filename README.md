@@ -163,6 +163,16 @@ refitting.
 
 </td>
 </tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content to render.
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -320,6 +330,16 @@ is done.
 
 </td>
 </tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content to render.
+
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -426,6 +446,16 @@ to be used for all fonts that do not specify their own `testString`.
 A custom timeout in milliseconds to pass to the `load` method of
 `FontFaceObserver`, to be used for all fonts that do not specify their
 own `timeout`.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content that will have access to font loading status via context.
 
 </td>
 </tr>

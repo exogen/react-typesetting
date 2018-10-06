@@ -85,7 +85,8 @@ const TYPES = {
   func: "Function",
   bool: "Boolean",
   element: "React&nbsp;Element",
-  object: "Object"
+  object: "Object",
+  node: "Node"
 };
 
 function renderShape(value, extraRows, topLevel) {
