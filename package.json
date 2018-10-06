@@ -1,14 +1,13 @@
 {
   "name": "react-typesetting",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "dist-cjs/index.js",
   "author": "Brian Beck <exogen@gmail.com>",
   "license": "MIT",
   "files": [
     "dist-cjs",
     "dist-esm"
   ],
-  "main": "dist-cjs/index.js",
   "module": "dist-esm/index.js",
   "scripts": {
     "build": "npm run build:demo && npm run build:dist && npm run build:docs",
@@ -32,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
     "babel-plugin-styled-components": "^1.8.0",
     "execa": "^1.0.0",
     "jest": "^23.6.0",
@@ -45,7 +45,7 @@
     "react-draggable": "^3.0.5",
     "react-testing-library": "^5.2.0",
     "rimraf": "^2.6.2",
-    "styled-components": "^4.0.0-beta.9",
+    "styled-components": "^4.0.0-beta.10",
     "webpack": "^4.20.2"
   }
 }
