@@ -58,6 +58,27 @@ The class to apply to the outer wrapper `span` created by this component.
 </td>
 </tr>
 <tr>
+<td valign="top" rowspan="1">style</td>
+<td valign="top" colspan="2">Object</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+Extra style properties to add to the outer wrapper `span` created by this
+component.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content to render.
+
+</td>
+</tr>
+<tr>
 <td valign="top" rowspan="1">minWordSpacing</td>
 <td valign="top" colspan="2">Number</td>
 <td valign="top" align="right" rowspan="1">-0.02</td>
@@ -99,17 +120,6 @@ adjusted.
 When performing a binary search to find the optimal value of each CSS
 property, this sets the maximum number of iterations to run before
 settling on a value.
-
-</td>
-</tr>
-<tr>
-<td valign="top" rowspan="1">style</td>
-<td valign="top" colspan="2">Object</td>
-<td valign="top" align="right" rowspan="1"></td>
-<td valign="top" valign="top" rowspan="1">
-
-Extra style properties to add to the outer wrapper `span` created by this
-component.
 
 </td>
 </tr>
@@ -163,16 +173,6 @@ refitting.
 
 </td>
 </tr>
-<tr>
-<td valign="top" rowspan="1">children</td>
-<td valign="top" colspan="2">Node</td>
-<td valign="top" align="right" rowspan="1"></td>
-<td valign="top" valign="top" rowspan="1">
-
-The content to render.
-
-</td>
-</tr>
 </tbody>
 </table>
 
@@ -207,6 +207,27 @@ control by changing the prop whenever you’d like the component to update.
 <td valign="top" valign="top" rowspan="1">
 
 The class to apply to the outer wrapper `span` created by this component.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">style</td>
+<td valign="top" colspan="2">Object</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+Extra style properties to add to the outer wrapper `span` created by this
+component.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content to render.
 
 </td>
 </tr>
@@ -271,17 +292,6 @@ being inserted for debugging purposes, or adjust their width.
 </td>
 </tr>
 <tr>
-<td valign="top" rowspan="1">style</td>
-<td valign="top" colspan="2">Object</td>
-<td valign="top" align="right" rowspan="1"></td>
-<td valign="top" valign="top" rowspan="1">
-
-Extra style properties to add to the outer wrapper `span` created by this
-component.
-
-</td>
-</tr>
-<tr>
 <td valign="top" rowspan="1">reflowKey</td>
 <td valign="top" colspan="2">
 One of… <br>
@@ -327,16 +337,6 @@ Whether to completely disable widow prevention.
 
 A function to call when layout has been recomputed and space substitution
 is done.
-
-</td>
-</tr>
-<tr>
-<td valign="top" rowspan="1">children</td>
-<td valign="top" colspan="2">Node</td>
-<td valign="top" align="right" rowspan="1"></td>
-<td valign="top" valign="top" rowspan="1">
-
-The content to render.
 
 </td>
 </tr>

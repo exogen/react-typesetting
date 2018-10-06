@@ -36,6 +36,15 @@ export default class PreventWidows extends React.PureComponent {
      */
     className: PropTypes.string,
     /**
+     * Extra style properties to add to the outer wrapper `span` created by this
+     * component.
+     */
+    style: PropTypes.object,
+    /**
+     * The content to render.
+     */
+    children: PropTypes.node,
+    /**
      * The maximum number of spaces to substitute.
      */
     maxSubstitutions: PropTypes.number,
@@ -76,11 +85,6 @@ export default class PreventWidows extends React.PureComponent {
       PropTypes.func
     ]),
     /**
-     * Extra style properties to add to the outer wrapper `span` created by this
-     * component.
-     */
-    style: PropTypes.object,
-    /**
      * If specified, disables automatic reflow so that you can trigger it
      * manually by changing this value. The prop itself does nothing, but
      * changing it will cause React to update the component.
@@ -100,11 +104,7 @@ export default class PreventWidows extends React.PureComponent {
      * A function to call when layout has been recomputed and space substitution
      * is done.
      */
-    onReflow: PropTypes.func,
-    /**
-     * The content to render.
-     */
-    children: PropTypes.node
+    onReflow: PropTypes.func
   };
 
   static defaultProps = {

@@ -50,6 +50,15 @@ export default class TightenText extends React.PureComponent {
      */
     className: PropTypes.string,
     /**
+     * Extra style properties to add to the outer wrapper `span` created by this
+     * component.
+     */
+    style: PropTypes.object,
+    /**
+     * The content to render.
+     */
+    children: PropTypes.node,
+    /**
      * Minimum word spacing in ems. Set this to 0 if word spacing should not be
      * adjusted.
      */
@@ -71,11 +80,6 @@ export default class TightenText extends React.PureComponent {
      */
     maxIterations: PropTypes.number,
     /**
-     * Extra style properties to add to the outer wrapper `span` created by this
-     * component.
-     */
-    style: PropTypes.object,
-    /**
      * If specified, disables automatic reflow so that you can trigger it
      * manually by changing this value. The prop itself does nothing, but
      * changing it will cause React to update the component.
@@ -96,11 +100,7 @@ export default class TightenText extends React.PureComponent {
      * A function to call when layout has been recomputed and the text is done
      * refitting.
      */
-    onReflow: PropTypes.func,
-    /**
-     * The content to render.
-     */
-    children: PropTypes.node
+    onReflow: PropTypes.func
   };
 
   static defaultProps = {
