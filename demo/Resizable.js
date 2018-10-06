@@ -1,10 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { DraggableCore } from "react-draggable";
 import styled from "styled-components";
 
-const noop = () => {};
+// const noop = () => {};
 
 const ResizableContent = styled.div`
   position: relative;
@@ -97,7 +96,7 @@ export default class Resizable extends React.PureComponent {
 
   getActualWidth() {
     const node = this.hostRef.current;
-    return parseInt(window.getComputedStyle(node).width);
+    return parseFloat(window.getComputedStyle(node).width);
   }
 
   handleStart = () => {
@@ -106,7 +105,6 @@ export default class Resizable extends React.PureComponent {
       this.props.onStart({ width: actualWidth });
     }
     this.setState({
-      actualWidth,
       attemptedWidth: actualWidth
     });
   };
@@ -116,10 +114,7 @@ export default class Resizable extends React.PureComponent {
     if (this.props.onStop) {
       this.props.onStop({ width: actualWidth });
     }
-    this.setState({
-      actualWidth,
-      attemptedWidth: actualWidth
-    });
+    this.setState({ attemptedWidth: actualWidth });
   };
 
   handleDrag = (event, data) => {
@@ -133,23 +128,20 @@ export default class Resizable extends React.PureComponent {
     // Adding this empty event listener fixes the window scrolling while
     // a handle is being dragged.
     // window.addEventListener("touchmove", noop);
-    const actualWidth = this.getActualWidth();
-    this.setState({ actualWidth });
+    this.actualWidth = this.getActualWidth();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { actualWidth } = this.state;
-    const nextActualWidth = this.getActualWidth();
-    if (nextActualWidth !== actualWidth) {
+    const actualWidth = this.getActualWidth();
+    if (actualWidth !== this.actualWidth) {
       if (actualWidth != null && this.props.onResize) {
+        const deltaX = actualWidth - this.actualWidth;
         this.props.onResize({
-          width: nextActualWidth,
-          deltaX: nextActualWidth - actualWidth
+          width: actualWidth,
+          deltaX: actualWidth - this.actualWidth
         });
+        this.actualWidth = actualWidth;
       }
-      this.setState({
-        actualWidth: nextActualWidth
-      });
     }
   }
 

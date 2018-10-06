@@ -87,7 +87,6 @@ export function replaceTextInNode(textNode, startIndex, length, replacement) {
   const head = text.slice(0, startIndex);
   const tail = text.slice(startIndex + length);
   if (typeof replacement === "string") {
-    const oldValue = textNode.nodeValue;
     const newValue = head + replacement + tail;
     textNode.nodeValue = newValue;
     return () => {

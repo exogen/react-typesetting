@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import createLogger from "debug";
-import ResizeObserver from "react-resize-observer";
+import ResizeObserver from "./ResizeObserver";
 import binarySearch from "./binarySearch";
 
 const debug = createLogger("react-typesetting:TightenText");
@@ -32,7 +32,7 @@ const defaultFormatter = value => `${value}em`;
  * If so, then a binary search is performed (with at most `maxIterations`) to
  * find the best fit.
  *
- * By default, [react-resize-observer](https://npm.im/react-resize-observer) is
+ * By default, [react-resize-detector](https://npm.im/react-resize-detector) is
  * used to automatically detect reflows that necessitate refitting the text. By
  * specifying the `reflowKey` prop, you can instead take manual control by
  * changing the prop whenever you’d like the component to update.
@@ -123,9 +123,9 @@ export default class TightenText extends React.PureComponent {
     if (!this.reflowScheduled) {
       this.reflowScheduled = true;
       if (reflowTimeout) {
-        this.timeout = setTimeout(this.reflow, reflowTimeout);
+        this.timeout = window.setTimeout(this.reflow, reflowTimeout);
       } else {
-        this.raf = requestAnimationFrame(this.reflow);
+        this.raf = window.requestAnimationFrame(this.reflow);
       }
     }
   }
@@ -279,7 +279,8 @@ export default class TightenText extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.setState({ initialized: true });
+    this.scheduleReflow();
+    // this.setState({ initialized: true });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -288,8 +289,8 @@ export default class TightenText extends React.PureComponent {
 
   componentWillUnmount() {
     if (this.reflowScheduled) {
-      clearTimeout(this.timeout);
-      cancelAnimationFrame(this.raf);
+      window.clearTimeout(this.timeout);
+      window.cancelAnimationFrame(this.raf);
     }
   }
 
@@ -302,7 +303,7 @@ export default class TightenText extends React.PureComponent {
         <span ref={this.innerRef} style={innerStyle}>
           {children}
         </span>
-        {initialized && reflowKey == null ? (
+        {reflowKey == null ? (
           <ResizeObserver onResize={this.handleResize} />
         ) : null}
       </span>

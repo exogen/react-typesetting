@@ -4,6 +4,8 @@ import FontFaceObserver from "fontfaceobserver";
 import createLogger from "debug";
 import Context from "./FontObserverContext";
 
+const debug = createLogger("react-typesetting:FontObserver");
+
 export default class FontObserverProvider extends React.Component {
   static displayName = "FontObserver.Provider";
 

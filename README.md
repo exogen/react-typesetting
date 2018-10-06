@@ -24,7 +24,7 @@ whether adjusting these will result in fewer wrapped lines or less overflow.
 If so, then a binary search is performed (with at most `maxIterations`) to
 find the best fit.
 
-By default, [react-resize-observer](https://npm.im/react-resize-observer) is
+By default, [react-resize-detector](https://npm.im/react-resize-detector) is
 used to automatically detect reflows that necessitate refitting the text. By
 specifying the `reflowKey` prop, you can instead take manual control by
 changing the prop whenever you’d like the component to update.
@@ -173,7 +173,7 @@ by measuring the width of the last line of text rendered by the component’s
 children. Spaces will be converted to non-breaking spaces until the given
 minimum width or the maximum number of substitutions is reached.
 
-By default, [react-resize-observer](https://npm.im/react-resize-observer) is
+By default, [react-resize-detector](https://npm.im/react-resize-detector) is
 used to automatically detect reflows that necessitate recomputing the line
 widths. By specifying the `reflowKey` prop, you can instead take manual
 control by changing the prop whenever you’d like the component to update.

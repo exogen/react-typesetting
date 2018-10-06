@@ -11,13 +11,16 @@
   "module": "dist-esm/index.js",
   "scripts": {
     "build": "npm run build:demo && npm run build:dist && npm run build:docs",
-    "build:demo": "rimraf .next docs && next build && next export -o docs",
+    "build:demo": "rimraf .next docs && next build && next export -o docs && touch docs/.nojekyll",
     "build:dist": "npm run build:dist-esm && npm run build:dist-cjs",
     "build:dist-cjs": "rimraf dist-cjs && BABEL_ENV=cjs babel src -d dist-cjs",
     "build:dist-esm": "rimraf dist-esm && BABEL_ENV=esm babel src -d dist-esm",
     "build:docs": "md-magic README.md",
+    "format": "npm run lint -- --fix",
+    "lint": "eslint demo pages scripts src *.js",
     "prepare": "npm run build:dist",
-    "start:dev": "parcel serve demo/index.html"
+    "start": "next start",
+    "start:dev": "next dev"
   },
   "peerDependencies": {
     "react": "^16.3.0",
@@ -26,13 +29,23 @@
   "dependencies": {
     "debug": "^4.0.1",
     "fontfaceobserver": "^2.0.13",
-    "prop-types": "^15.6.2",
-    "react-resize-observer": "^1.0.3"
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.8.0",
+    "eslint": "^5.6.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": ">=2.13.0",
+    "eslint-plugin-node": ">=7.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": ">=4.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": ">=4.0.0",
     "execa": "^1.0.0",
     "jest": "^23.6.0",
     "markdown-magic": "^0.1.25",
