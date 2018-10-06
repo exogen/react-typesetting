@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const style = {
-  display: "block",
+  display: "inline-block",
   position: "absolute",
   left: 0,
   top: 0,
@@ -15,7 +15,7 @@ const style = {
 };
 
 const expandStyle = {
-  display: "block",
+  display: "inline-block",
   position: "absolute",
   left: 0,
   top: 0,
@@ -25,7 +25,7 @@ const expandStyle = {
 };
 
 const shrinkStyle = {
-  display: "block",
+  display: "inline-block",
   position: "absolute",
   left: 0,
   top: 0,
@@ -53,6 +53,14 @@ export default class ResizeObserver extends React.PureComponent {
     this.ignoreEvents = false;
   };
 
+  handleScroll = event => {
+    if (this.ignoreEvents) {
+      return;
+    }
+    event.preventDefault();
+    this.reflow();
+  };
+
   reflow = () => {
     this.resetScroll(this.shrinkRef);
     this.resetScroll(this.expandRef);
@@ -60,15 +68,8 @@ export default class ResizeObserver extends React.PureComponent {
     if (width !== this.lastWidth || height !== this.lastHeight) {
       this.lastWidth = width;
       this.lastHeight = height;
-      this.props.onResize();
+      this.props.onResize({ width, height });
     }
-  };
-
-  handleScroll = () => {
-    if (this.ignoreEvents) {
-      return;
-    }
-    this.reflow();
   };
 
   componentDidMount() {

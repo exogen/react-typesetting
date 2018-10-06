@@ -14,6 +14,11 @@ const debug = createLogger("react-typesetting:PreventWidows");
 
 const NBSP = "\u00a0";
 
+const defaultStyle = {
+  position: "relative",
+  display: "inline-block"
+};
+
 let _nbspIncubator;
 
 /**
@@ -28,8 +33,6 @@ let _nbspIncubator;
  * update.
  */
 export default class PreventWidows extends React.PureComponent {
-  hostRef = React.createRef();
-
   static propTypes = {
     /**
      * The class to apply to the outer wrapper `span` created by this component.
@@ -113,7 +116,11 @@ export default class PreventWidows extends React.PureComponent {
     nbspChar: NBSP
   };
 
+  outerRef = React.createRef();
+  innerRef = React.createRef();
+  reflowScheduled = false;
   undoFunctions = [];
+  widthNode = null;
 
   handleResize = () => {
     debug("Detected resize, forcing update");
@@ -174,11 +181,20 @@ export default class PreventWidows extends React.PureComponent {
     let widthFn;
     if (typeof minLineWidth === "string") {
       widthFn = options => {
-        const widthNode = document.createElement("span");
-        widthNode.style.display = "block";
-        widthNode.style.position = "absolute";
-        widthNode.style.width = minLineWidth;
-        const parentNode = options.ref.current;
+        if (!this.widthNode) {
+          this.widthNode = document.createElement("span");
+        }
+        const { widthNode } = this;
+        widthNode.style.cssText = `
+          display: block;
+          position: absolute;
+          left: 0;
+          pointer-events: none;
+          z-index: -1;
+          visibility: hidden;
+          width: ${minLineWidth};
+        `;
+        const parentNode = options.outerRef.current;
         parentNode.appendChild(widthNode);
         const { width } = widthNode.getBoundingClientRect();
         parentNode.removeChild(widthNode);
@@ -199,7 +215,7 @@ export default class PreventWidows extends React.PureComponent {
     let targetWidth;
 
     while (undoFunctions.length < maxSubstitutions) {
-      const rects = this.hostRef.current.getClientRects();
+      const rects = this.innerRef.current.getClientRects();
       const lines = getLines(rects);
       if (lines.length < 2) {
         break;
@@ -210,7 +226,8 @@ export default class PreventWidows extends React.PureComponent {
       const lastLineWidth = lineWidths[lineWidths.length - 1];
       if (targetWidth == null) {
         targetWidth = widthFn({
-          ref: this.hostRef,
+          outerRef: this.outerRef,
+          innerRef: this.innerRef,
           lineWidths,
           maxLineWidth,
           prevLineWidth,
@@ -225,7 +242,7 @@ export default class PreventWidows extends React.PureComponent {
       if (prevLineWidth - (targetWidth - lastLineWidth) < targetWidth) {
         break;
       }
-      const iter = iterTextNodesReverse(this.hostRef.current);
+      const iter = iterTextNodesReverse(this.innerRef.current);
       let textNode = iter();
       while (textNode !== null) {
         const text = textNode.nodeValue;
@@ -264,13 +281,15 @@ export default class PreventWidows extends React.PureComponent {
       window.clearTimeout(this.timeout);
       window.cancelAnimationFrame(this.raf);
     }
+    this.widthNode = null;
   }
 
   render() {
     const { className, style, reflowKey, children } = this.props;
+    const outerStyle = style ? { ...defaultStyle, ...style } : defaultStyle;
     return (
-      <span className={className} style={style} ref={this.hostRef}>
-        {children}
+      <span className={className} style={outerStyle} ref={this.outerRef}>
+        <span ref={this.innerRef}>{children}</span>
         {reflowKey == null ? (
           <ResizeObserver onResize={this.handleResize} />
         ) : null}

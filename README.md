@@ -10,6 +10,8 @@ React components for creating beautifully typeset designs.
 
 </div>
 
+:warning: This project is highly experimental. Use at your own risk!
+
 <!-- AUTO-GENERATED-CONTENT:START (COMPONENTS) -->
 
 ## TightenText

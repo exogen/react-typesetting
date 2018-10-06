@@ -112,7 +112,6 @@ export default class TightenText extends React.PureComponent {
 
   outerRef = React.createRef();
   innerRef = React.createRef();
-  isTightened = false;
   reflowScheduled = false;
 
   scheduleReflow(snapshot) {
@@ -140,26 +139,14 @@ export default class TightenText extends React.PureComponent {
   }
 
   resetStyle() {
-    if (this.isTightened) {
-      this.updateStyle("wordSpacing", 0);
-      this.updateStyle("letterSpacing", 0);
-      this.updateStyle("fontSize", 1);
-      this.isTightened = false;
-    }
+    this.innerRef.current.style.cssText = `
+      word-spacing: 0;
+      letter-spacing: 0;
+      font-size: 1em;
+    `;
   }
 
   updateStyle(property, value, formatter = defaultFormatter) {
-    switch (property) {
-      case "fontSize":
-        if (value !== 1) {
-          this.isTightened = true;
-        }
-        break;
-      default:
-        if (value !== 0) {
-          this.isTightened = true;
-        }
-    }
     const outputValue = value == null ? value : formatter(value);
     debug("Setting property '%s' to '%s'", property, outputValue);
     this.innerRef.current.style[property] = outputValue;
@@ -197,9 +184,11 @@ export default class TightenText extends React.PureComponent {
     // If there's only one line, our job is done! Otherwise, find out if we
     // can apply styles to get fewer lines.
     if (maxLineCount > 1 || maxOverflow > 0) {
-      this.updateStyle("wordSpacing", minWordSpacing);
-      this.updateStyle("letterSpacing", minLetterSpacing);
-      this.updateStyle("fontSize", minFontSize);
+      this.innerRef.current.style.cssText = `
+        word-spacing: ${minWordSpacing}em;
+        letter-spacing: ${minLetterSpacing}em;
+        font-size: ${minFontSize}em;
+      `;
       const minLineCount = this.countLines();
       const minOverflow = this.measureOverflow();
       debug(
