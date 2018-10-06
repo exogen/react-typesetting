@@ -6,6 +6,7 @@ const displayNameHandler = require("react-docgen-displayname-handler").default;
 const files = [
   "src/TightenText.js",
   "src/PreventWidows.js",
+  "src/Justify.js",
   "src/FontObserver.js",
   "src/FontObserverProvider.js"
 ];

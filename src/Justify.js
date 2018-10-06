@@ -21,7 +21,24 @@ const justifyStyle = {
 export default class Justify extends React.Component {
   static propTypes = {
     /**
-     *
+     * The class to apply to the outer wrapper element created by this
+     * component.
+     */
+    className: PropTypes.string,
+    /**
+     * Extra style properties to add to the outer wrapper element created by
+     * this component.
+     */
+    style: PropTypes.object,
+    /**
+     * The content to render.
+     */
+    children: PropTypes.node,
+    /**
+     * The element type in which to render the supplied children. It must be
+     * a block level element, like `p` or `div`, since `text-align` has no
+     * effect on inline elements. It may also be a custom React component, as
+     * long as it uses `forwardRef`.
      */
     as: PropTypes.oneOfType([
       PropTypes.string,
@@ -38,7 +55,28 @@ export default class Justify extends React.Component {
      * Whether or not to initially set `text-align: justify` before the
      * available width has been determined.
      */
-    initialJustify: PropTypes.bool
+    initialJustify: PropTypes.bool,
+    /**
+     * If specified, disables automatic reflow so that you can trigger it
+     * manually by changing this value. The prop itself does nothing, but
+     * changing it will cause React to update the component.
+     */
+    reflowKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    /**
+     * Debounces reflows so they happen at most this often in milliseconds (at
+     * the end of the given duration). If not specified, reflow is computed
+     * every time the component is rendered.
+     */
+    reflowTimeout: PropTypes.number,
+    /**
+     * Whether to completely disable widow prevention.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * A function to call when layout has been recomputed and space substitution
+     * is done.
+     */
+    onReflow: PropTypes.func
   };
 
   static defaultProps = {

@@ -345,6 +345,156 @@ is done.
 </tbody>
 </table>
 
+## Justify
+
+This component may include more advanced justification features in the
+future, but it is currently very simple: it conditionally applies
+`text-align: justify` to its container element (a `<p>` by default)
+depending on whether or not there is enough room to not result in large,
+unseemly word gaps. The minimum width is defined by `minWidth` and defaults
+to 17em.
+
+### Props
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th colspan="2">Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top" rowspan="1">className</td>
+<td valign="top" colspan="2">String</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The class to apply to the outer wrapper element created by this
+component.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">style</td>
+<td valign="top" colspan="2">Object</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+Extra style properties to add to the outer wrapper element created by
+this component.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content to render.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">as</td>
+<td valign="top" colspan="2">
+One of… <br>
+&nbsp;&nbsp;String <br>
+&nbsp;&nbsp;Function <br>
+&nbsp;&nbsp;Object
+</td>
+<td valign="top" align="right" rowspan="1">p</td>
+<td valign="top" valign="top" rowspan="1">
+
+The element type in which to render the supplied children. It must be
+a block level element, like `p` or `div`, since `text-align` has no
+effect on inline elements. It may also be a custom React component, as
+long as it uses `forwardRef`.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">minWidth</td>
+<td valign="top" colspan="2">
+One of… <br>
+&nbsp;&nbsp;Number <br>
+&nbsp;&nbsp;String
+</td>
+<td valign="top" align="right" rowspan="1">17em</td>
+<td valign="top" valign="top" rowspan="1">
+
+The minimum width at which to allow justified text. Numbers indicate an
+absolute pixel width. Strings will be applied to an element's CSS in
+order to perform the width calculation.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">initialJustify</td>
+<td valign="top" colspan="2">Boolean</td>
+<td valign="top" align="right" rowspan="1">true</td>
+<td valign="top" valign="top" rowspan="1">
+
+Whether or not to initially set `text-align: justify` before the
+available width has been determined.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">reflowKey</td>
+<td valign="top" colspan="2">
+One of… <br>
+&nbsp;&nbsp;Number <br>
+&nbsp;&nbsp;String
+</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+If specified, disables automatic reflow so that you can trigger it
+manually by changing this value. The prop itself does nothing, but
+changing it will cause React to update the component.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">reflowTimeout</td>
+<td valign="top" colspan="2">Number</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+Debounces reflows so they happen at most this often in milliseconds (at
+the end of the given duration). If not specified, reflow is computed
+every time the component is rendered.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">disabled</td>
+<td valign="top" colspan="2">Boolean</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+Whether to completely disable widow prevention.
+
+</td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">onReflow</td>
+<td valign="top" colspan="2">Function</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+A function to call when layout has been recomputed and space substitution
+is done.
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ## FontObserver
 
 A component for observing the fonts specified in the `FontObserver.Provider`
