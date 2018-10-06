@@ -4,13 +4,20 @@
   "main": "index.js",
   "author": "Brian Beck <exogen@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist-cjs",
+    "dist-esm"
+  ],
+  "main": "dist-cjs/index.js",
+  "module": "dist-esm/index.js",
   "scripts": {
     "build": "npm run build:demo && npm run build:dist && npm run build:docs",
     "build:demo": "rimraf .next docs && next build && next export -o docs",
-    "build:dist": "npm run build:dist-esm && npm run build:dist-lib",
-    "build:dist-esm": "BABEL_ENV=esm babel src -d dist-esm",
-    "build:dist-lib": "babel src -d dist-lib",
+    "build:dist": "npm run build:dist-esm && npm run build:dist-cjs",
+    "build:dist-cjs": "rimraf dist-cjs && BABEL_ENV=cjs babel src -d dist-cjs",
+    "build:dist-esm": "rimraf dist-esm && BABEL_ENV=esm babel src -d dist-esm",
     "build:docs": "md-magic README.md",
+    "prepare": "npm run build:dist",
     "start:dev": "parcel serve demo/index.html"
   },
   "peerDependencies": {
