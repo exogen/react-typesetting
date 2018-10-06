@@ -11,10 +11,12 @@ const justifyStyle = {
 };
 
 /**
- * The `Justify` component conditionally applies `text-align: justify` to its
- * container element (a &lt;p&gt; by default) depending on whether or not there
- * is enough room. The minimum width is defined by `minWidth` and defaults to
- * 17em.
+ * This component may include more advanced justification features in the
+ * future, but it is currently very simple: it conditionally applies
+ * `text-align: justify` to its container element (a `<p>` by default)
+ * depending on whether or not there is enough room to not result in large,
+ * unseemly word gaps. The minimum width is defined by `minWidth` and defaults
+ * to 17em.
  */
 export default class Justify extends React.Component {
   static propTypes = {
