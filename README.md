@@ -476,7 +476,8 @@ every time the component is rendered.
 <td valign="top" align="right" rowspan="1"></td>
 <td valign="top" valign="top" rowspan="1">
 
-Whether to completely disable widow prevention.
+Whether to completely disable justification detection. The last
+alignment that was applied will be preserved.
 
 </td>
 </tr>
@@ -486,8 +487,8 @@ Whether to completely disable widow prevention.
 <td valign="top" align="right" rowspan="1"></td>
 <td valign="top" valign="top" rowspan="1">
 
-A function to call when layout has been recomputed and space substitution
-is done.
+A function to call when layout has been recomputed and justification
+has been applied or unapplied.
 
 </td>
 </tr>

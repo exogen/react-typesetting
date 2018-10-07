@@ -68,12 +68,13 @@ export default class Justify extends React.Component {
      */
     reflowTimeout: PropTypes.number,
     /**
-     * Whether to completely disable widow prevention.
+     * Whether to completely disable justification detection. The last
+     * alignment that was applied will be preserved.
      */
     disabled: PropTypes.bool,
     /**
-     * A function to call when layout has been recomputed and space substitution
-     * is done.
+     * A function to call when layout has been recomputed and justification
+     * has been applied or unapplied.
      */
     onReflow: PropTypes.func
   };
