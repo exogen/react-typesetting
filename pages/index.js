@@ -18,13 +18,17 @@ const GlobalStyle = createGlobalStyle`
 
     body {
       margin: 0;
-      padding: 50px 100px;
+      padding: 20px 40px;
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: 1rem;
       line-height: 1.7;
       text-rendering: optimizeLegibility;
       background: rgb(232, 230, 224);
       color: rgb(52, 50, 47);
+
+      @media (min-width: 768px) {
+        padding: 50px 100px;
+      }
     }
 
     code {
@@ -48,6 +52,10 @@ const GlobalStyle = createGlobalStyle`
       color: rgb(54, 36, 140);
     }
   `;
+
+const MainContent = styled.main`
+  max-width: 60ch;
+`;
 
 const PageTitle = styled.h1`
   font-size: 1.8rem;
@@ -87,7 +95,7 @@ export default class App extends React.Component {
             { family: "Libre Baskerville", weight: 700 }
           ]}
         >
-          <main style={{ fontFamily: "Libre Baskerville", width: "60ch" }}>
+          <MainContent>
             <PageTitle>react-typesetting</PageTitle>
 
             <Justify>
@@ -362,7 +370,7 @@ export default class App extends React.Component {
                 .
               </Justify>
             </section>
-          </main>
+          </MainContent>
         </FontObserver.Provider>
       </>
     );
