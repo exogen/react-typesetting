@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { DraggableCore } from "react-draggable";
 import styled from "styled-components";
 
-// const noop = () => {};
+const noop = () => {};
 
 const ResizableContent = styled.div`
   position: relative;
@@ -128,7 +128,7 @@ export default class Resizable extends React.PureComponent {
   componentDidMount() {
     // Adding this empty event listener fixes the window scrolling while
     // a handle is being dragged.
-    // window.addEventListener("touchmove", noop);
+    window.addEventListener("touchmove", noop);
     this.actualWidth = this.getActualWidth();
   }
 
@@ -146,7 +146,7 @@ export default class Resizable extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    // window.removeEventListener("touchmove", noop);
+    window.removeEventListener("touchmove", noop);
   }
 
   render() {
