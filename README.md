@@ -350,9 +350,8 @@ is done.
 This component may include more advanced justification features in the
 future, but it is currently very simple: it conditionally applies
 `text-align: justify` to its container element (a `<p>` by default)
-depending on whether or not there is enough room to not result in large,
-unseemly word gaps. The minimum width is defined by `minWidth` and defaults
-to 17em.
+depending on whether or not there is enough room to avoid large, unseemly
+word gaps. The minimum width is defined by `minWidth` and defaults to 16 ems.
 
 ### Props
 
@@ -423,7 +422,7 @@ One of… <br>
 &nbsp;&nbsp;Number <br>
 &nbsp;&nbsp;String
 </td>
-<td valign="top" align="right" rowspan="1">17em</td>
+<td valign="top" align="right" rowspan="1">16em</td>
 <td valign="top" valign="top" rowspan="1">
 
 The minimum width at which to allow justified text. Numbers indicate an

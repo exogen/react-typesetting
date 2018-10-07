@@ -14,9 +14,8 @@ const justifyStyle = {
  * This component may include more advanced justification features in the
  * future, but it is currently very simple: it conditionally applies
  * `text-align: justify` to its container element (a `<p>` by default)
- * depending on whether or not there is enough room to not result in large,
- * unseemly word gaps. The minimum width is defined by `minWidth` and defaults
- * to 17em.
+ * depending on whether or not there is enough room to avoid large, unseemly
+ * word gaps. The minimum width is defined by `minWidth` and defaults to 16 ems.
  */
 export default class Justify extends React.Component {
   static propTypes = {
@@ -81,7 +80,7 @@ export default class Justify extends React.Component {
 
   static defaultProps = {
     as: "p",
-    minWidth: "17em",
+    minWidth: "16em",
     initialJustify: true
   };
 
