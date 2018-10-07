@@ -14,11 +14,15 @@ const VisibleSpace = styled.span.attrs({
 const GlobalStyle = createGlobalStyle`
     html {
       font-size: 16px;
+
+      @media (min-width: 768px) {
+        font-size: 14px;
+      }
     }
 
     body {
       margin: 0;
-      padding: 20px 40px;
+      padding: 20px;
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: 1rem;
       line-height: 1.7;
