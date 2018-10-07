@@ -12,9 +12,28 @@ React components for creating beautifully typeset designs.
 
 :warning: This project is highly experimental. Use at your own risk!
 
+## Table of Contents
+
+<!-- AUTO-GENERATED-CONTENT:START (TOC) -->
+- [TightenText](#tightentext)
+  * [Props](#props)
+- [PreventWidows](#preventwidows)
+  * [Props](#props-1)
+- [Justify](#justify)
+  * [Props](#props-2)
+- [FontObserver](#fontobserver)
+  * [Props](#props-3)
+- [FontObserver.Provider](#fontobserverprovider)
+  * [Props](#props-4)
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 <!-- AUTO-GENERATED-CONTENT:START (COMPONENTS) -->
 
 ## TightenText
+
+```js
+import { TightenText } from 'react-typesetting';
+```
 
 Tightens `word-spacing`, `letter-spacing`, and `font-size` (in that order)
 by the minimum amount necessary to ensure a minimal number of wrapped lines
@@ -180,6 +199,9 @@ refitting.
 
 ## PreventWidows
 
+```js
+import { PreventWidows } from 'react-typesetting';
+```
 Prevents [widows](https://www.fonts.com/content/learning/fontology/level-2/text-typography/rags-widows-orphans)
 by measuring the width of the last line of text rendered by the component’s
 children. Spaces will be converted to non-breaking spaces until the given
@@ -347,11 +369,19 @@ is done.
 
 ## Justify
 
-This component may include more advanced justification features in the
-future, but it is currently very simple: it conditionally applies
-`text-align: justify` to its container element (a `<p>` by default)
-depending on whether or not there is enough room to avoid large, unseemly
-word gaps. The minimum width is defined by `minWidth` and defaults to 16 ems.
+```js
+import { Justify } from 'react-typesetting';
+```
+
+While this may include more advanced justification features in the future, it
+is currently very simple: it conditionally applies `text-align: justify` to
+its container element (a `<p>` by default) depending on whether or not there
+is enough room to avoid large, unseemly word gaps. The minimum width is
+defined by `minWidth` and defaults to 16 ems.
+
+You might also accomplish this with media queries, but this component can
+determine the exact width available to the container element instead of just
+the entire page.
 
 ### Props
 
@@ -496,6 +526,10 @@ has been applied or unapplied.
 </table>
 
 ## FontObserver
+
+```js
+import { FontObserver } from 'react-typesetting';
+```
 
 A component for observing the fonts specified in the `FontObserver.Provider`
 component.

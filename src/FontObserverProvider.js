@@ -6,6 +6,13 @@ import Context from "./FontObserverContext";
 
 const debug = createLogger("react-typesetting:FontObserver");
 
+/*
+ * ```js
+ * import { FontObserver } from 'react-typesetting';
+ * ```
+ *
+ * A context provider for specifying which fonts to observe.
+ */
 export default class FontObserverProvider extends React.Component {
   static displayName = "FontObserver.Provider";
 

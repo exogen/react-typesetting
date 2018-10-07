@@ -22,6 +22,9 @@ const defaultStyle = {
 let _nbspIncubator;
 
 /**
+ * ```js
+ * import { PreventWidows } from 'react-typesetting';
+ * ```
  * Prevents [widows](https://www.fonts.com/content/learning/fontology/level-2/text-typography/rags-widows-orphans)
  * by measuring the width of the last line of text rendered by the component’s
  * children. Spaces will be converted to non-breaking spaces until the given

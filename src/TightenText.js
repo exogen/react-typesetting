@@ -22,6 +22,10 @@ const innerStyle = {
 const defaultFormatter = value => `${value}em`;
 
 /**
+ * ```js
+ * import { TightenText } from 'react-typesetting';
+ * ```
+ *
  * Tightens `word-spacing`, `letter-spacing`, and `font-size` (in that order)
  * by the minimum amount necessary to ensure a minimal number of wrapped lines
  * and overflow.

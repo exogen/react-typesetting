@@ -4,6 +4,10 @@ import Context from "./FontObserverContext";
 import FontObserverProvider from "./FontObserverProvider";
 
 /**
+ * ```js
+ * import { FontObserver } from 'react-typesetting';
+ * ```
+ *
  * A component for observing the fonts specified in the `FontObserver.Provider`
  * component.
  */
