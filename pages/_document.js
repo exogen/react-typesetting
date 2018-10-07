@@ -16,11 +16,12 @@ export default class Document extends NextDocument {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          {this.props.styleTags}
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Courgette|Libre+Baskerville:400,400i,700"
           />
+          {this.props.styleTags}
         </Head>
         <body>
           <Main />
