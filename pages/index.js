@@ -78,6 +78,10 @@ const DemoResizable = styled(Resizable)`
   margin-bottom: 40px;
   padding: 0.25em 0;
   background: #fff;
+
+  @media (max-width: 767px) {
+    max-width: 100%;
+  }
 `;
 
 export default class App extends React.Component {
