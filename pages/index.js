@@ -13,10 +13,10 @@ const VisibleSpace = styled.span.attrs({
 
 const GlobalStyle = createGlobalStyle`
     html {
-      font-size: 16px;
+      font-size: 14px;
 
       @media (min-width: 768px) {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
 
