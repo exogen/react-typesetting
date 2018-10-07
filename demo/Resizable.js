@@ -12,8 +12,8 @@ const ResizableContent = styled.div`
 
 const Hint = styled.div`
   position: absolute;
-  left: -3em;
-  right: -3em;
+  left: -5em;
+  right: -1em;
   bottom: 100%;
   margin: 0 auto 8px auto;
   font-family: Courgette, sans-serif;
