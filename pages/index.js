@@ -14,6 +14,7 @@ const VisibleSpace = styled.span.attrs({
 const GlobalStyle = createGlobalStyle`
     html {
       font-size: 14px;
+      overflow-x: hidden;
 
       @media (min-width: 768px) {
         font-size: 16px;
@@ -29,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
       text-rendering: optimizeLegibility;
       background: rgb(232, 230, 224);
       color: rgb(52, 50, 47);
+      overflow-x: hidden;
 
       @media (min-width: 768px) {
         padding: 50px 100px;
