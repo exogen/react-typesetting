@@ -289,7 +289,7 @@ export default class TightenText extends React.PureComponent {
   render() {
     const { className, style, reflowKey, children } = this.props;
     const outerStyle = style ? { ...defaultStyle, ...style } : defaultStyle;
-    return (
+    const content = (
       <span className={className} style={outerStyle} ref={this.outerRef}>
         <span ref={this.innerRef} style={innerStyle}>
           {children}
@@ -298,6 +298,13 @@ export default class TightenText extends React.PureComponent {
           <ResizeObserver onResize={this.handleResize} />
         ) : null}
       </span>
+    );
+    return reflowKey == null ? (
+      <ResizeObserver observe={this.outerRef} onResize={this.handleResize}>
+        {content}
+      </ResizeObserver>
+    ) : (
+      content
     );
   }
 }

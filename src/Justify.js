@@ -130,7 +130,7 @@ export default class Justify extends React.Component {
   reflow = () => {
     this.reflowScheduled = false;
 
-    const { minWidth } = this.props;
+    const { minWidth, onReflow } = this.props;
 
     if (!this.widthNode) {
       this.widthNode = document.createElement("span");
@@ -154,7 +154,7 @@ export default class Justify extends React.Component {
         return { justify };
       }
       return null;
-    });
+    }, onReflow);
   };
 
   render() {
@@ -162,14 +162,20 @@ export default class Justify extends React.Component {
     const { justify } = this.state;
     const alignStyle = justify ? justifyStyle : undefined;
     const outerStyle = style ? { ...alignStyle, ...style } : alignStyle;
-
-    return (
+    const content = (
       <Component className={className} style={outerStyle} ref={this.hostRef}>
         {children}
         {reflowKey == null ? (
           <ResizeObserver onResize={this.handleResize} />
         ) : null}
       </Component>
+    );
+    return reflowKey == null ? (
+      <ResizeObserver observe={this.hostRef} onResize={this.handleResize}>
+        {content}
+      </ResizeObserver>
+    ) : (
+      content
     );
   }
 }

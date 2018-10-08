@@ -290,13 +290,20 @@ export default class PreventWidows extends React.PureComponent {
   render() {
     const { className, style, reflowKey, children } = this.props;
     const outerStyle = style ? { ...defaultStyle, ...style } : defaultStyle;
-    return (
+    const content = (
       <span className={className} style={outerStyle} ref={this.outerRef}>
         <span ref={this.innerRef}>{children}</span>
         {reflowKey == null ? (
           <ResizeObserver onResize={this.handleResize} />
         ) : null}
       </span>
+    );
+    return reflowKey == null ? (
+      <ResizeObserver observe={this.outerRef} onResize={this.handleResize}>
+        {content}
+      </ResizeObserver>
+    ) : (
+      content
     );
   }
 }
