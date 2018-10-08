@@ -265,7 +265,7 @@ export default class App extends React.Component {
 
             <ReflowResizable initialWidth={600}>
               {reflowKey => (
-                <p style={{ fontSize: 15, textAlign: "justify" }}>
+                <p style={{ fontSize: `${15 / 16}rem`, textAlign: "justify" }}>
                   <PreventWidows
                     nbspChar={<VisibleSpace />}
                     reflowKey={reflowKey}
