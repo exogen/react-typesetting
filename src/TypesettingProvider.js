@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Context, { DefaultContext } from "./TypesettingContext";
+import Context from "./TypesettingContext";
 
 /**
  * ```js
@@ -37,7 +37,7 @@ export default class TypesettingProvider extends React.Component {
   };
 
   static defaultProps = {
-    presets: DefaultContext.presets
+    presets: {}
   };
 
   static getDerivedStateFromProps(props) {

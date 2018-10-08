@@ -1,7 +1,5 @@
 import React from "react";
 
-export const DefaultContext = {
+export default React.createContext({
   presets: {}
-};
-
-export default React.createContext(DefaultContext);
+});

@@ -719,7 +719,7 @@ components to use.
 <tr>
 <td valign="top" rowspan="1">presets</td>
 <td valign="top" colspan="2">Object</td>
-<td valign="top" align="right" rowspan="1">DefaultContext.presets</td>
+<td valign="top" align="right" rowspan="1">{}</td>
 <td valign="top" valign="top" rowspan="1">
 
 An object mapping preset names to default props. For example, given the
