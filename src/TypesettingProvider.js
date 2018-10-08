@@ -1,18 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Context from "./TypesettingContext";
+import Context, { DefaultContext } from "./TypesettingContext";
 
-/*
+/**
  * ```js
  * import { Typesetting } from 'react-typesetting';
  * ```
  *
- * An optional context provider for supplying typesetting presets.
+ * A context provider for defining presets for all other `react-typesetting`
+ * components to use.
  */
 export default class TypesettingProvider extends React.Component {
   static displayName = "Typesetting.Provider";
 
   static propTypes = {
+    /**
+     * An object mapping preset names to default props. For example, given the
+     * value:
+     *
+     * ```js
+     * { myPreset: { minFontSize: 1, maxIterations: 3 } }
+     * ```
+     *
+     * …the `TightenText` component could use this preset by specifying the
+     * `preset` prop:
+     *
+     * ```jsx
+     * <TightenText preset="myPreset" />
+     * ```
+     */
     presets: PropTypes.object,
     /**
      * The content that will have access to the defined presets via context.
@@ -21,7 +37,7 @@ export default class TypesettingProvider extends React.Component {
   };
 
   static defaultProps = {
-    presets: {}
+    presets: DefaultContext.presets
   };
 
   static getDerivedStateFromProps(props) {

@@ -609,6 +609,12 @@ The argument will be an object with these properties:
 
 ### FontObserver.Provider
 
+```js
+import { FontObserver } from 'react-typesetting';
+```
+
+A context provider for specifying which fonts to observe.
+
 #### Props
 
 <table>
@@ -691,6 +697,13 @@ The content that will have access to font loading status via context.
 
 ### Typesetting.Provider
 
+```js
+import { Typesetting } from 'react-typesetting';
+```
+
+A context provider for defining presets for all other `react-typesetting`
+components to use.
+
 #### Props
 
 <table>
@@ -706,8 +719,24 @@ The content that will have access to font loading status via context.
 <tr>
 <td valign="top" rowspan="1">presets</td>
 <td valign="top" colspan="2">Object</td>
-<td valign="top" align="right" rowspan="1">{}</td>
-<td valign="top" valign="top" rowspan="1"></td>
+<td valign="top" align="right" rowspan="1">DefaultContext.presets</td>
+<td valign="top" valign="top" rowspan="1">
+
+An object mapping preset names to default props. For example, given the
+value:
+
+```js
+{ myPreset: { minFontSize: 1, maxIterations: 3 } }
+```
+
+…the `TightenText` component could use this preset by specifying the
+`preset` prop:
+
+```jsx
+<TightenText preset="myPreset" />
+```
+
+</td>
 </tr>
 <tr>
 <td valign="top" rowspan="1">children</td>

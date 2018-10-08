@@ -6,7 +6,7 @@ import Context from "./FontObserverContext";
 
 const debug = createLogger("react-typesetting:FontObserver");
 
-/*
+/**
  * ```js
  * import { FontObserver } from 'react-typesetting';
  * ```
