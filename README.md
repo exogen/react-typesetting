@@ -645,7 +645,7 @@ to force them to load (if necessary) and observe when they are ready.
 Each item in the array specifies the font `family`, `weight`, `style`,
 and `stretch`, with only `family` being required. Additionally, each item
 can contain a custom `testString` and `timeout` for that font, if they
-should diff from the defaults. If only the family name is needed, the
+should differ from the defaults. If only the family name is needed, the
 array item can just be a string.
 
 </td>
