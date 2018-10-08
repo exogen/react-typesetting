@@ -8,7 +8,8 @@ const files = [
   "src/PreventWidows.js",
   "src/Justify.js",
   "src/FontObserver.js",
-  "src/FontObserverProvider.js"
+  "src/FontObserverProvider.js",
+  "src/TypesettingProvider.js"
 ];
 
 const resolver = reactDocs.resolver.findExportedComponentDefinition;

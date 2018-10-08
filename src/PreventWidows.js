@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import createLogger from "debug";
 import ResizeObserver from "./ResizeObserver";
+import Typesetting from "./Typesetting";
 import {
   iterTextNodesReverse,
   replaceTextInNode,
@@ -35,7 +36,7 @@ let _nbspIncubator;
  * take manual control by changing the prop whenever you’d like the component to
  * update.
  */
-export default class PreventWidows extends React.PureComponent {
+class PreventWidows extends React.PureComponent {
   static propTypes = {
     /**
      * The class to apply to the outer wrapper `span` created by this component.
@@ -110,7 +111,13 @@ export default class PreventWidows extends React.PureComponent {
      * A function to call when layout has been recomputed and space substitution
      * is done.
      */
-    onReflow: PropTypes.func
+    onReflow: PropTypes.func,
+    /**
+     * The name of a preset defined in an outer `Typesetting.Provider`
+     * component. If it exists, default values for all other props will come
+     * from the specified preset.
+     */
+    preset: PropTypes.string
   };
 
   static defaultProps = {
@@ -307,3 +314,5 @@ export default class PreventWidows extends React.PureComponent {
     );
   }
 }
+
+export default Typesetting.withPreset(PreventWidows);

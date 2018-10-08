@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import createLogger from "debug";
 import ResizeObserver from "./ResizeObserver";
 import binarySearch from "./binarySearch";
+import Typesetting from "./Typesetting";
 
 const debug = createLogger("react-typesetting:TightenText");
 
@@ -47,7 +48,7 @@ const defaultFormatter = value => `${value}em`;
  * component is best used sparingly for typographically important short runs
  * of text, like titles or labels.
  */
-export default class TightenText extends React.PureComponent {
+class TightenText extends React.PureComponent {
   static propTypes = {
     /**
      * The class to apply to the outer wrapper `span` created by this component.
@@ -104,7 +105,13 @@ export default class TightenText extends React.PureComponent {
      * A function to call when layout has been recomputed and the text is done
      * refitting.
      */
-    onReflow: PropTypes.func
+    onReflow: PropTypes.func,
+    /**
+     * The name of a preset defined in an outer `Typesetting.Provider`
+     * component. If it exists, default values for all other props will come
+     * from the specified preset.
+     */
+    preset: PropTypes.string
   };
 
   static defaultProps = {
@@ -308,3 +315,5 @@ export default class TightenText extends React.PureComponent {
     );
   }
 }
+
+export default Typesetting.withPreset(TightenText);

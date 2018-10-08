@@ -19,13 +19,13 @@ function buildDocs(components) {
   for (const filename in components) {
     const component = components[filename];
     const componentName = path.basename(filename, ".js");
-    console.log(`\n## ${componentName}\n`);
+    console.log(`\n### ${componentName}\n`);
     if (component.description) {
       console.log(`${component.description}\n`);
     }
     const propNames = Object.keys(component.props || {});
     if (propNames.length) {
-      console.log(`### Props\n`);
+      console.log(`#### Props\n`);
       console.log("<table>");
       console.log("<thead>");
       console.log("<tr>");

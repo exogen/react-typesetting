@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import createLogger from "debug";
 import ResizeObserver from "./ResizeObserver";
+import Typesetting from "./Typesetting";
 
 const debug = createLogger("react-typesetting:Justify");
 
@@ -25,7 +26,7 @@ const justifyStyle = {
  * determine the exact width available to the container element instead of just
  * the entire page.
  */
-export default class Justify extends React.Component {
+class Justify extends React.Component {
   static propTypes = {
     /**
      * The class to apply to the outer wrapper element created by this
@@ -84,7 +85,13 @@ export default class Justify extends React.Component {
      * A function to call when layout has been recomputed and justification
      * has been applied or unapplied.
      */
-    onReflow: PropTypes.func
+    onReflow: PropTypes.func,
+    /**
+     * The name of a preset defined in an outer `Typesetting.Provider`
+     * component. If it exists, default values for all other props will come
+     * from the specified preset.
+     */
+    preset: PropTypes.string
   };
 
   static defaultProps = {
@@ -179,3 +186,5 @@ export default class Justify extends React.Component {
     );
   }
 }
+
+export default Typesetting.withPreset(Justify);

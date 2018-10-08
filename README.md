@@ -15,21 +15,26 @@ React components for creating beautifully typeset designs.
 ## Table of Contents
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
-- [TightenText](#tightentext)
-  * [Props](#props)
-- [PreventWidows](#preventwidows)
-  * [Props](#props-1)
-- [Justify](#justify)
-  * [Props](#props-2)
-- [FontObserver](#fontobserver)
-  * [Props](#props-3)
-- [FontObserver.Provider](#fontobserverprovider)
-  * [Props](#props-4)
+- [Components](#components)
+  * [TightenText](#tightentext)
+    + [Props](#props)
+  * [PreventWidows](#preventwidows)
+    + [Props](#props-1)
+  * [Justify](#justify)
+    + [Props](#props-2)
+  * [FontObserver](#fontobserver)
+    + [Props](#props-3)
+  * [FontObserver.Provider](#fontobserverprovider)
+    + [Props](#props-4)
+  * [Typesetting.Provider](#typesettingprovider)
+    + [Props](#props-5)
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+## Components
 
 <!-- AUTO-GENERATED-CONTENT:START (COMPONENTS) -->
 
-## TightenText
+### TightenText
 
 ```js
 import { TightenText } from 'react-typesetting';
@@ -56,7 +61,7 @@ because there is no way to target individual wrapped lines. Thus, this
 component is best used sparingly for typographically important short runs
 of text, like titles or labels.
 
-### Props
+#### Props
 
 <table>
 <thead>
@@ -194,10 +199,22 @@ refitting.
 
 </td>
 </tr>
+<tr>
+<td valign="top" rowspan="1">preset</td>
+<td valign="top" colspan="2">String</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The name of a preset defined in an outer `Typesetting.Provider`
+component. If it exists, default values for all other props will come
+from the specified preset.
+
+</td>
+</tr>
 </tbody>
 </table>
 
-## PreventWidows
+### PreventWidows
 
 ```js
 import { PreventWidows } from 'react-typesetting';
@@ -212,7 +229,7 @@ automatically detected. By specifying the `reflowKey` prop, you can instead
 take manual control by changing the prop whenever you’d like the component to
 update.
 
-### Props
+#### Props
 
 <table>
 <thead>
@@ -364,10 +381,22 @@ is done.
 
 </td>
 </tr>
+<tr>
+<td valign="top" rowspan="1">preset</td>
+<td valign="top" colspan="2">String</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The name of a preset defined in an outer `Typesetting.Provider`
+component. If it exists, default values for all other props will come
+from the specified preset.
+
+</td>
+</tr>
 </tbody>
 </table>
 
-## Justify
+### Justify
 
 ```js
 import { Justify } from 'react-typesetting';
@@ -383,7 +412,7 @@ You might also accomplish this with media queries, but this component can
 determine the exact width available to the container element instead of just
 the entire page.
 
-### Props
+#### Props
 
 <table>
 <thead>
@@ -522,10 +551,22 @@ has been applied or unapplied.
 
 </td>
 </tr>
+<tr>
+<td valign="top" rowspan="1">preset</td>
+<td valign="top" colspan="2">String</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The name of a preset defined in an outer `Typesetting.Provider`
+component. If it exists, default values for all other props will come
+from the specified preset.
+
+</td>
+</tr>
 </tbody>
 </table>
 
-## FontObserver
+### FontObserver
 
 ```js
 import { FontObserver } from 'react-typesetting';
@@ -534,7 +575,7 @@ import { FontObserver } from 'react-typesetting';
 A component for observing the fonts specified in the `FontObserver.Provider`
 component.
 
-### Props
+#### Props
 
 <table>
 <thead>
@@ -566,9 +607,9 @@ The argument will be an object with these properties:
 </tbody>
 </table>
 
-## FontObserver.Provider
+### FontObserver.Provider
 
-### Props
+#### Props
 
 <table>
 <thead>
@@ -642,6 +683,39 @@ own `timeout`.
 <td valign="top" valign="top" rowspan="1">
 
 The content that will have access to font loading status via context.
+
+</td>
+</tr>
+</tbody>
+</table>
+
+### Typesetting.Provider
+
+#### Props
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th colspan="2">Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top" rowspan="1">presets</td>
+<td valign="top" colspan="2">Object</td>
+<td valign="top" align="right" rowspan="1">{}</td>
+<td valign="top" valign="top" rowspan="1"></td>
+</tr>
+<tr>
+<td valign="top" rowspan="1">children</td>
+<td valign="top" colspan="2">Node</td>
+<td valign="top" align="right" rowspan="1"></td>
+<td valign="top" valign="top" rowspan="1">
+
+The content that will have access to the defined presets via context.
 
 </td>
 </tr>

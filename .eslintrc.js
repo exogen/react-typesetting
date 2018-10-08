@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: ["react", "prettier"],
   rules: {
-    "prettier/prettier": ["warn", {}]
+    "prettier/prettier": ["warn", {}],
+    "react/no-unused-prop-types": "warn"
   }
 };
