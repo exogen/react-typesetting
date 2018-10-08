@@ -38,7 +38,14 @@ const Handle = styled.div`
   width: 31px;
   background: transparent;
   cursor: ew-resize;
+  user-select: none;
   z-index: 2;
+
+  @media (max-width: 767px) {
+    top: -4px;
+    bottom: -4px;
+    width: 39px;
+  }
 
   &:before {
     display: block;
@@ -50,6 +57,11 @@ const Handle = styled.div`
     border-radius: 2px;
     background: #1289de;
     content: "";
+
+    @media (max-width: 767px) {
+      left: 15px;
+      width: 9px;
+    }
   }
 
   &:after {
@@ -62,6 +74,12 @@ const Handle = styled.div`
     margin-top: -6px;
     background: rgba(179, 241, 255, 0.85);
     content: "";
+
+    @media (max-width: 767px) {
+      left: 19px;
+      height: 18px;
+      margin-top: -9px;
+    }
   }
 `;
 

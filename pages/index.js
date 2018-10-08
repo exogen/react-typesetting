@@ -86,6 +86,22 @@ const DemoResizable = styled(Resizable)`
   }
 `;
 
+function ReflowResizable({ children, ...props }) {
+  return (
+    <DemoResizable {...props}>
+      {width => (
+        <FontObserver>
+          {status =>
+            typeof children === "function"
+              ? children(`${width}-${status.loaded}-${status.error}`)
+              : children
+          }
+        </FontObserver>
+      )}
+    </DemoResizable>
+  );
+}
+
 export default class App extends React.Component {
   render() {
     return (
@@ -151,9 +167,13 @@ export default class App extends React.Component {
                 </PreventWidows>
               </Justify>
 
-              <DemoResizable initialWidth={320}>
-                <TightenText>Islay single malt Scotch whisky</TightenText>
-              </DemoResizable>
+              <ReflowResizable initialWidth={320}>
+                {reflowKey => (
+                  <TightenText reflowKey={reflowKey}>
+                    Islay single malt Scotch whisky
+                  </TightenText>
+                )}
+              </ReflowResizable>
 
               <Justify>
                 <PreventWidows>
@@ -198,9 +218,9 @@ export default class App extends React.Component {
                 </PreventWidows>
               </Justify>
 
-              <DemoResizable initialWidth={200}>
+              <ReflowResizable initialWidth={200}>
                 The Long&nbsp;Goodbye
-              </DemoResizable>
+              </ReflowResizable>
 
               <Justify>
                 <PreventWidows>
@@ -220,15 +240,20 @@ export default class App extends React.Component {
                 </PreventWidows>
               </Justify>
 
-              <DemoResizable initialWidth={440}>
-                <PreventWidows nbspChar={<VisibleSpace />}>
-                  Call me Ishmael. Some years ago—never mind how long
-                  precisely—having little or no money in my purse, and nothing
-                  particular to interest me on shore, I thought I would sail
-                  about a little and see the watery part of the world. It is a
-                  way I…
-                </PreventWidows>
-              </DemoResizable>
+              <ReflowResizable initialWidth={440}>
+                {reflowKey => (
+                  <PreventWidows
+                    nbspChar={<VisibleSpace />}
+                    reflowKey={reflowKey}
+                  >
+                    Call me Ishmael. Some years ago—never mind how long
+                    precisely—having little or no money in my purse, and nothing
+                    particular to interest me on shore, I thought I would sail
+                    about a little and see the watery part of the world. It is a
+                    way I…
+                  </PreventWidows>
+                )}
+              </ReflowResizable>
             </section>
 
             <Justify>
@@ -238,20 +263,25 @@ export default class App extends React.Component {
               </PreventWidows>
             </Justify>
 
-            <DemoResizable initialWidth={600}>
-              <p style={{ fontSize: 15, textAlign: "justify" }}>
-                <PreventWidows nbspChar={<VisibleSpace />}>
-                  One morning, when Gregor Samsa woke from troubled dreams, he
-                  found himself transformed in his bed into a horrible vermin.
-                  He lay on his armour-like back, and if he lifted his head a
-                  little he could see his brown belly, slightly domed and
-                  divided by arches into stiff sections. The bedding was hardly
-                  able to cover it and seemed ready to slide off any moment. His
-                  many legs, pitifully thin compared with the size of the rest
-                  of him, waved about helplessly as he looked.
-                </PreventWidows>
-              </p>
-            </DemoResizable>
+            <ReflowResizable initialWidth={600}>
+              {reflowKey => (
+                <p style={{ fontSize: 15, textAlign: "justify" }}>
+                  <PreventWidows
+                    nbspChar={<VisibleSpace />}
+                    reflowKey={reflowKey}
+                  >
+                    One morning, when Gregor Samsa woke from troubled dreams, he
+                    found himself transformed in his bed into a horrible vermin.
+                    He lay on his armour-like back, and if he lifted his head a
+                    little he could see his brown belly, slightly domed and
+                    divided by arches into stiff sections. The bedding was
+                    hardly able to cover it and seemed ready to slide off any
+                    moment. His many legs, pitifully thin compared with the size
+                    of the rest of him, waved about helplessly as he looked.
+                  </PreventWidows>
+                </p>
+              )}
+            </ReflowResizable>
 
             <section>
               <SectionTitle>&lt;Justify&gt;</SectionTitle>
@@ -266,7 +296,7 @@ export default class App extends React.Component {
                 </PreventWidows>
               </Justify>
 
-              <DemoResizable initialWidth={220}>
+              <ReflowResizable initialWidth={220}>
                 <p style={{ textAlign: "justify" }}>
                   There was no possibility of taking a walk that day. We had
                   been wandering, indeed, in the leafless shrubbery an hour in
@@ -275,7 +305,7 @@ export default class App extends React.Component {
                   clouds so sombre, and a rain so penetrating, that further
                   out-door exercise was now out of the question.
                 </p>
-              </DemoResizable>
+              </ReflowResizable>
 
               <Justify>
                 <PreventWidows>
@@ -287,16 +317,18 @@ export default class App extends React.Component {
                 </PreventWidows>
               </Justify>
 
-              <DemoResizable initialWidth={220}>
-                <Justify>
-                  There was no possibility of taking a walk that day. We had
-                  been wandering, indeed, in the leafless shrubbery an hour in
-                  the morning; but since dinner (Mrs. Reed, when there was no
-                  company, dined early) the cold winter wind had brought with it
-                  clouds so sombre, and a rain so penetrating, that further
-                  out-door exercise was now out of the question.
-                </Justify>
-              </DemoResizable>
+              <ReflowResizable initialWidth={220}>
+                {reflowKey => (
+                  <Justify reflowKey={reflowKey}>
+                    There was no possibility of taking a walk that day. We had
+                    been wandering, indeed, in the leafless shrubbery an hour in
+                    the morning; but since dinner (Mrs. Reed, when there was no
+                    company, dined early) the cold winter wind had brought with
+                    it clouds so sombre, and a rain so penetrating, that further
+                    out-door exercise was now out of the question.
+                  </Justify>
+                )}
+              </ReflowResizable>
             </section>
 
             <section>
