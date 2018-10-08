@@ -1,14 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ResizeDetector from "react-resize-detector";
+import ResizeObserver from "resize-observer-polyfill";
 
-export default function ResizeObserver(props) {
-  return <ResizeDetector handleWidth handleHeight onResize={props.onResize} />;
-}
-
-ResizeObserver.propTypes = {
-  /**
-   * A function to call when the element size changes.
-   */
-  onResize: PropTypes.func
+const style = {
+  display: "block",
+  position: "absolute",
+  pointerEvents: "none",
+  visibility: "hidden",
+  zIndex: -1
 };
+
+export default class ResizeObserverComponent extends React.PureComponent {
+  static displayName = "ResizeObserver";
+
+  static propTypes = {
+    /**
+     * A function to call when the element size changes.
+     */
+    onResize: PropTypes.func
+  };
+
+  hostRef = React.createRef();
+  observer = null;
+
+  handleResize = entries => {
+    this.props.onResize(entries);
+  };
+
+  componentDidMount() {
+    this.observer = new ResizeObserver(this.handleResize);
+    this.observer.observe(this.hostRef.current);
+  }
+
+  componentWillUnmount() {
+    this.observer.unobserve(this.hostRef.current);
+    this.observer = null;
+  }
+
+  render() {
+    return <span ref={this.hostRef} style={style} />;
+  }
+}

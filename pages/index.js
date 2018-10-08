@@ -78,7 +78,8 @@ const DemoResizable = styled(Resizable)`
   font-size: ${18 / 16}rem;
   line-height: 1.4;
   margin-bottom: 40px;
-  padding: 0.25em 0;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   background: #fff;
 
   @media (max-width: 767px) {

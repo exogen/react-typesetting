@@ -43,6 +43,7 @@ const Handle = styled.div`
 
   @media (max-width: 767px) {
     top: -4px;
+    right: -24px;
     bottom: -4px;
     width: 39px;
   }
