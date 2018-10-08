@@ -314,7 +314,7 @@ One of… <br>
 &nbsp;&nbsp;React&nbsp;Element <br>
 &nbsp;&nbsp;Function
 </td>
-<td valign="top" align="right" rowspan="1"><code title="non-breaking space">\u00A</code></td>
+<td valign="top" align="right" rowspan="1"><code title="non-breaking space">\u00A0</code></td>
 <td valign="top" valign="top" rowspan="1">
 
 A character or element to use when substituting spaces. Defaults to a

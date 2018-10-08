@@ -144,7 +144,7 @@ const CODE_CHARS = {
   "\t": '<code title="tab">\\t</code>',
   "\n": '<code title="line feed">\\n</code>',
   "\r": '<code title="carriage return">\\r</code>',
-  "\u00A0": '<code title="non-breaking space">\\u00A</code>'
+  "\u00A0": '<code title="non-breaking space">\\u00A0</code>'
 };
 
 function renderValue(value, indent = 0) {

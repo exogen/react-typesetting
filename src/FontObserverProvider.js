@@ -36,10 +36,25 @@ export default class FontObserverProvider extends React.Component {
            * The font family name.
            */
           family: PropTypes.string.isRequired,
+          /**
+           * The named or numeric font weight.
+           */
           weight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+          /**
+           * The font style value.
+           */
           style: PropTypes.string,
+          /**
+           * The font stretch value.
+           */
           stretch: PropTypes.string,
+          /**
+           * A custom test string to pass to `FontFaceObserver` for this font.
+           */
           testString: PropTypes.string,
+          /**
+           * A custom timeout to pass to `FontFaceObserver` for this font.
+           */
           timeout: PropTypes.number
         })
       ])
