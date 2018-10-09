@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled, { createGlobalStyle } from "styled-components";
+import MediaQuery from "react-responsive";
 import Resizable from "../demo/Resizable";
 import { TightenText, PreventWidows, Justify, FontObserver } from "../src";
 
@@ -91,13 +92,19 @@ function ReflowResizable({ children, ...props }) {
   return (
     <DemoResizable {...props}>
       {width => (
-        <FontObserver>
-          {status =>
-            typeof children === "function"
-              ? children(`${width}-${status.loaded}-${status.error}`)
-              : children
-          }
-        </FontObserver>
+        <MediaQuery minWidth={768}>
+          {isDesktop => (
+            <FontObserver>
+              {status =>
+                typeof children === "function"
+                  ? children(
+                      `${width}-${isDesktop}-${status.loaded}-${status.error}`
+                    )
+                  : children
+              }
+            </FontObserver>
+          )}
+        </MediaQuery>
       )}
     </DemoResizable>
   );

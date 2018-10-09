@@ -12,8 +12,8 @@ const ResizableContent = styled.div`
 
 const Hint = styled.div`
   position: absolute;
-  left: -5em;
-  right: -1em;
+  left: -5.5em;
+  right: -0.5em;
   bottom: 100%;
   margin: 0 auto 8px auto;
   font-family: Courgette, sans-serif;
@@ -28,6 +28,11 @@ const Hint = styled.div`
   transform: scale(${props => (props.hasBeenDragged ? 0.8 : 1)});
   transition-property: transform, opacity;
   transition-duration: 0.5s;
+
+  @media (min-width: 768px) {
+    left: -3em;
+    right: -3em;
+  }
 `;
 
 const Handle = styled.div`

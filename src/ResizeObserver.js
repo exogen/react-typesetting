@@ -25,9 +25,19 @@ export default class ResizeObserverComponent extends React.PureComponent {
      */
     observe: PropTypes.object,
     /**
+     * Whether to also observe `document.body`. This helps to catch content
+     * changes that occur as a result of media queries but may not affect the
+     * size of the observed container.
+     */
+    observeBody: PropTypes.bool,
+    /**
      * A function to call when the element size changes.
      */
     onResize: PropTypes.func
+  };
+
+  static defaultProps = {
+    observeBody: false
   };
 
   hostRef = React.createRef();
@@ -39,23 +49,31 @@ export default class ResizeObserverComponent extends React.PureComponent {
   };
 
   componentDidMount() {
-    const ref = this.props.observe || this.hostRef;
-    this.observedNode = ref.current;
+    const { observe = this.hostRef, observeBody } = this.props;
+    this.observedNode = observe.current;
     this.observer = new ResizeObserver(this.handleResize);
     this.observer.observe(this.observedNode);
+    if (observeBody) {
+      this.observer.observe(document.body);
+    }
   }
 
-  componentDidUpdate() {
-    const ref = this.props.observe || this.hostRef;
-    if (this.observedNode !== ref.current) {
+  componentDidUpdate(prevProps) {
+    const { observe = this.hostRef, observeBody } = this.props;
+    if (this.observedNode !== observe.current) {
       this.observer.unobserve(this.observedNode);
-      this.observedNode = ref.current;
+      this.observedNode = observe.current;
       this.observer.observe(this.observedNode);
+    }
+    if (observeBody && !prevProps.observeBody) {
+      this.observer.observe(document.body);
+    } else if (!observeBody && prevProps.observeBody) {
+      this.observer.unobserve(document.body);
     }
   }
 
   componentWillUnmount() {
-    this.observer.unobserve(this.observedNode);
+    this.observer.disconnect();
     this.observer = null;
     this.observedNode = null;
   }
