@@ -301,9 +301,6 @@ class TightenText extends React.PureComponent {
         <span ref={this.innerRef} style={innerStyle}>
           {children}
         </span>
-        {reflowKey == null ? (
-          <ResizeObserver onResize={this.handleResize} />
-        ) : null}
       </span>
     );
     return reflowKey == null ? (

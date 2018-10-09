@@ -172,9 +172,6 @@ class Justify extends React.Component {
     const content = (
       <Component className={className} style={outerStyle} ref={this.hostRef}>
         {children}
-        {reflowKey == null ? (
-          <ResizeObserver onResize={this.handleResize} />
-        ) : null}
       </Component>
     );
     return reflowKey == null ? (

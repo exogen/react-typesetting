@@ -300,9 +300,6 @@ class PreventWidows extends React.PureComponent {
     const content = (
       <span className={className} style={outerStyle} ref={this.outerRef}>
         <span ref={this.innerRef}>{children}</span>
-        {reflowKey == null ? (
-          <ResizeObserver onResize={this.handleResize} />
-        ) : null}
       </span>
     );
     return reflowKey == null ? (
