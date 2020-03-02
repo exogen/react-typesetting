@@ -1,17 +1,37 @@
 module.exports = {
-  extends: ["standard", "standard-react", "prettier", "prettier/standard"],
+  root: true,
   env: {
+    browser: true,
     es6: true,
-    node: true,
-    jest: true
+    jest: true,
+    node: true
   },
-  parser: "babel-eslint",
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
   parserOptions: {
-    ecmaVersion: 2018
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2018,
+    sourceType: "module"
   },
-  plugins: ["react", "prettier"],
+  settings: {
+    react: {
+      version: "16.8"
+    }
+  },
+  plugins: ["@typescript-eslint", "react-hooks"],
   rules: {
-    "prettier/prettier": ["warn", {}],
-    "react/no-unused-prop-types": "warn"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error"
   }
 };
