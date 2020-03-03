@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, useState } from "react";
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useEffect,
+  useState
+} from "react";
 import FontFaceObserver from "fontfaceobserver";
 
 const DEV = process.env.NODE_ENV !== "production";
@@ -38,6 +43,9 @@ const FontObserver: FunctionComponent<FontObserverProps> = ({ children }) => {
   const [state, setState] = useState(null);
 
   // TODO
+  useEffect(() => {
+    console.log(FontFaceObserver);
+  }, []);
 
   return <Context.Provider value={state}>{children}</Context.Provider>;
 };

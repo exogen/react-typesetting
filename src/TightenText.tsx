@@ -93,7 +93,7 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
   maxIterations = 5,
   minLetterSpacing: inputMinLetterSpacing = initial => initial - 0.02,
   minScaleX: inputMinScaleX = 0.97,
-  minWordSpacing: inputMinWordSpacing = initial => initial - 0.25,
+  minWordSpacing: inputMinWordSpacing = initial => initial - 0.02,
   reflowTimeout = 0
 }) => {
   const outerRef = useRef<HTMLSpanElement>(null);

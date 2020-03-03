@@ -7,6 +7,22 @@
     "type": "git",
     "url": "https://github.com/exogen/react-typesetting"
   },
+  "keywords": [
+    "fit",
+    "font",
+    "fonts",
+    "observer",
+    "orphans",
+    "react",
+    "squeeze",
+    "text",
+    "tighten",
+    "typeset",
+    "typesetting",
+    "widows",
+    "wrap",
+    "wrapping"
+  ],
   "files": [
     "dist",
     "types"

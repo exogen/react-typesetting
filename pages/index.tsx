@@ -7,10 +7,18 @@ import React, {
 import { Swipeable } from "react-swipeable";
 import TightenText from "../src/TightenText";
 
+type ChildFunction = (width: number) => ReactNode;
+
 interface ResizableProps {
-  children: ReactNode | ((width: number) => ReactNode);
+  children: ReactNode | ChildFunction;
   initialWidth: number;
   style?: {};
+}
+
+function isChildFunction(
+  children: ReactNode | ChildFunction
+): children is ChildFunction {
+  return typeof children === "function";
 }
 
 const Resizable: FunctionComponent<ResizableProps> = ({
@@ -41,7 +49,7 @@ const Resizable: FunctionComponent<ResizableProps> = ({
         ...style
       }}
     >
-      {typeof children === "function" ? children(activeWidth) : children}
+      {isChildFunction(children) ? children(activeWidth) : children}
       <Swipeable
         delta={1}
         preventDefaultTouchmoveEvent
