@@ -5,25 +5,25 @@ import React, {
   useEffect,
   useLayoutEffect,
   useRef
-} from "react";
-import { countLines, measureOverflow } from "./domUtils";
-import binarySearch, { BinarySearchResult } from "./binarySearch";
+} from 'react';
+import { countLines, measureOverflow } from './domUtils';
+import binarySearch, { BinarySearchResult } from './binarySearch';
 
-const DEV = process.env.NODE_ENV !== "production";
+const DEV = process.env.NODE_ENV !== 'production';
 
 const debug = DEV
-  ? require("debug")("react-typesetting:TightenText")
+  ? require('debug')('react-typesetting:TightenText')
   : undefined;
 
 // React needlessly warns about using `useLayoutEffect` effect on the server,
 // even though it's just as meaningless as `useEffect` there. So swap to
 // `useEffect` in a server environment.
 const useIsomorphicLayoutEffect =
-  typeof window === "undefined" ? useEffect : useLayoutEffect;
+  typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 const outerStyle = {
-  display: "inline-block",
-  transformOrigin: "0 0"
+  display: 'inline-block',
+  transformOrigin: '0 0'
 };
 
 function updateStyle(
@@ -33,44 +33,45 @@ function updateStyle(
 ) {
   let outputValue: string | null;
   switch (property) {
-    case "scaleX":
-      if (typeof value === "number") {
-        updateStyle(node, "width", 100 / value);
+    case 'scaleX':
+      if (typeof value === 'number') {
+        updateStyle(node, 'width', 100 / value);
         outputValue = `${property}(${value})`;
       } else {
-        updateStyle(node, "width", 100);
+        updateStyle(node, 'width', 100);
         outputValue = value;
       }
-      property = "transform";
+      property = 'transform';
       break;
-    case "width":
-      if (typeof value === "number") {
+    case 'width':
+      if (typeof value === 'number') {
         outputValue = `${value}%`;
       } else {
         outputValue = value;
       }
       break;
     default:
-      if (typeof value === "number") {
+      if (typeof value === 'number') {
         outputValue = `${value}em`;
       } else {
         outputValue = value;
       }
   }
   if (DEV) {
-    debug("Setting property %s to %s.", property, outputValue);
+    debug('Setting property %s to %s.', property, outputValue);
   }
   node.style.setProperty(property, outputValue);
 }
 
 function resetStyle(node: HTMLElement) {
-  updateStyle(node, "word-spacing", null);
-  updateStyle(node, "letter-spacing", null);
-  updateStyle(node, "scaleX", null);
+  updateStyle(node, 'word-spacing', null);
+  updateStyle(node, 'letter-spacing', null);
+  updateStyle(node, 'scaleX', null);
 }
 
 type RequestId = ReturnType<typeof requestAnimationFrame>;
 type TimeoutId = ReturnType<typeof setTimeout>;
+type ReflowCallback = () => void;
 
 interface TightenTextProps {
   // I would rather not have to specify `children` myself, since React already
@@ -83,7 +84,8 @@ interface TightenTextProps {
   minLetterSpacing?: number | ((initial: number) => number);
   minScaleX?: number | ((initial: number) => number);
   minWordSpacing?: number | ((initial: number) => number);
-  reflowKey?: unknown;
+  onReflow?: ReflowCallback;
+  reflowKey?: any;
   reflowTimeout?: number;
 }
 
@@ -94,12 +96,14 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
   minLetterSpacing: inputMinLetterSpacing = initial => initial - 0.02,
   minScaleX: inputMinScaleX = 0.97,
   minWordSpacing: inputMinWordSpacing = initial => initial - 0.02,
+  onReflow,
   reflowTimeout = 0
 }) => {
   const outerRef = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLSpanElement>(null);
   const raf = useRef<RequestId>();
   const timeout = useRef<TimeoutId>();
+  const reflowCallback = useRef<ReflowCallback | undefined>();
   const isStyleModified = useRef(false);
 
   const reflow = useCallback(() => {
@@ -126,11 +130,11 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
       const computedStyle = window.getComputedStyle(outerNode);
       const fontSize = parseInt(computedStyle.fontSize, 10);
       const wordSpacing =
-        computedStyle.wordSpacing === "normal"
+        computedStyle.wordSpacing === 'normal'
           ? 0
           : parseInt(computedStyle.wordSpacing, 10);
       const letterSpacing =
-        computedStyle.letterSpacing === "normal"
+        computedStyle.letterSpacing === 'normal'
           ? 0
           : parseInt(computedStyle.letterSpacing, 10);
 
@@ -139,21 +143,21 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
       const maxScaleX = 1;
 
       const minWordSpacing =
-        typeof inputMinWordSpacing === "function"
+        typeof inputMinWordSpacing === 'function'
           ? inputMinWordSpacing(maxWordSpacing)
           : inputMinWordSpacing;
       const minLetterSpacing =
-        typeof inputMinLetterSpacing === "function"
+        typeof inputMinLetterSpacing === 'function'
           ? inputMinLetterSpacing(maxLetterSpacing)
           : inputMinLetterSpacing;
       const minScaleX =
-        typeof inputMinScaleX === "function"
+        typeof inputMinScaleX === 'function'
           ? inputMinScaleX(1)
           : inputMinScaleX;
 
-      updateStyle(outerNode, "word-spacing", minWordSpacing);
-      updateStyle(outerNode, "letter-spacing", minLetterSpacing);
-      updateStyle(outerNode, "scaleX", minScaleX);
+      updateStyle(outerNode, 'word-spacing', minWordSpacing);
+      updateStyle(outerNode, 'letter-spacing', minLetterSpacing);
+      updateStyle(outerNode, 'scaleX', minScaleX);
       isStyleModified.current = true;
 
       const minLineCount = countLines(innerNode);
@@ -161,7 +165,7 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
 
       if (DEV) {
         debug(
-          "Determined target line count %s -> %s and overflow %s -> %s.",
+          'Determined target line count %s -> %s and overflow %s -> %s.',
           maxLineCount,
           minLineCount,
           maxOverflow,
@@ -187,25 +191,25 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
           // First, check if shrinking the scaleX transform is even necessary to
           // meet our goal. If so, search for the optimal size, otherwise continue
           // on to letter spacing.
-          updateStyle(outerNode, "scaleX", null);
+          updateStyle(outerNode, 'scaleX', null);
           if (measure() === BinarySearchResult.High) {
             binarySearch({
               lowerBound: minScaleX,
               upperBound: maxScaleX,
               maxIterations,
               measure,
-              update: value => updateStyle(outerNode, "scaleX", value)
+              update: value => updateStyle(outerNode, 'scaleX', value)
             });
           } else {
             // Do the same thing with letter spacing.
-            updateStyle(outerNode, "letter-spacing", null);
+            updateStyle(outerNode, 'letter-spacing', null);
             if (measure() === BinarySearchResult.High) {
               binarySearch({
                 lowerBound: minLetterSpacing,
                 upperBound: maxLetterSpacing,
                 maxIterations,
                 measure,
-                update: value => updateStyle(outerNode, "letter-spacing", value)
+                update: value => updateStyle(outerNode, 'letter-spacing', value)
               });
             } else {
               // We already know word spacing can't be 0, otherwise we wouldn't
@@ -218,7 +222,7 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
                 upperBound: maxWordSpacing,
                 maxIterations,
                 measure,
-                update: value => updateStyle(outerNode, "word-spacing", value)
+                update: value => updateStyle(outerNode, 'word-spacing', value)
               });
             }
           }
@@ -229,22 +233,30 @@ const TightenText: FunctionComponent<TightenTextProps> = ({
       }
     } else {
       if (DEV) {
-        debug("Already at minimum line count and overflow.");
+        debug('Already at minimum line count and overflow.');
       }
     }
     if (DEV) {
       if (startTime) {
         const endTime = Date.now();
-        debug("Reflow completed in %sms.", endTime - startTime);
+        debug('Reflow completed in %sms.', endTime - startTime);
       }
+    }
+    if (reflowCallback.current) {
+      reflowCallback.current();
     }
   }, [
     disabled,
-    maxIterations,
     inputMinLetterSpacing,
     inputMinScaleX,
-    inputMinWordSpacing
+    inputMinWordSpacing,
+    maxIterations,
+    reflowCallback
   ]);
+
+  useIsomorphicLayoutEffect(() => {
+    reflowCallback.current = onReflow;
+  }, [onReflow]);
 
   useIsomorphicLayoutEffect(() => {
     if (disabled && !isStyleModified.current) {

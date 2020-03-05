@@ -1,10 +1,10 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, ReactNode } from 'react';
 
 interface PreventWidowsProps {
   children: ReactNode;
 }
 
-const PreventWidows: FunctionComponent<PreventWidowsProps> = ({ children }) => {
+const PreventWidows: FunctionComponent<PreventWidowsProps> = () => {
   // TODO
   return null;
 };

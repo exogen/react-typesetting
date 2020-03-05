@@ -3,16 +3,16 @@ import React, {
   ReactNode,
   useEffect,
   useState
-} from "react";
-import FontFaceObserver from "fontfaceobserver";
+} from 'react';
+import FontFaceObserver from 'fontfaceobserver';
 
-const DEV = process.env.NODE_ENV !== "production";
+// const DEV = process.env.NODE_ENV !== 'production';
 
 const Context = React.createContext(null);
 
-const debug = DEV
-  ? require("debug")("react-typesetting:FontObserver")
-  : undefined;
+// const debug = DEV
+//   ? require('debug')('react-typesetting:FontObserver')
+//   : undefined;
 
 type FontDescriptor =
   | string
@@ -40,7 +40,7 @@ interface FontObserverProps {
  * A context provider for specifying which fonts to observe.
  */
 const FontObserver: FunctionComponent<FontObserverProps> = ({ children }) => {
-  const [state, setState] = useState(null);
+  const [state] = useState(null);
 
   // TODO
   useEffect(() => {

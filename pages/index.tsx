@@ -3,9 +3,9 @@ import React, {
   ReactNode,
   useCallback,
   useState
-} from "react";
-import { Swipeable } from "react-swipeable";
-import TightenText from "../src/TightenText";
+} from 'react';
+import { Swipeable } from 'react-swipeable';
+import TightenText from '../src/TightenText';
 
 type ChildFunction = (width: number) => ReactNode;
 
@@ -18,7 +18,7 @@ interface ResizableProps {
 function isChildFunction(
   children: ReactNode | ChildFunction
 ): children is ChildFunction {
-  return typeof children === "function";
+  return typeof children === 'function';
 }
 
 const Resizable: FunctionComponent<ResizableProps> = ({
@@ -43,9 +43,9 @@ const Resizable: FunctionComponent<ResizableProps> = ({
   return (
     <div
       style={{
-        position: "relative",
+        position: 'relative',
         width: activeWidth,
-        background: "rgb(226, 221, 216)",
+        background: 'rgb(226, 221, 216)',
         ...style
       }}
     >
@@ -57,14 +57,14 @@ const Resizable: FunctionComponent<ResizableProps> = ({
         onSwiping={handleSwiping}
         onSwiped={handleSwiped}
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: -1,
           right: -9,
           bottom: -1,
           width: 9,
           borderRadius: 2,
-          background: "rgb(32, 145, 249)",
-          cursor: "ew-resize"
+          background: 'rgb(32, 145, 249)',
+          cursor: 'ew-resize'
         }}
       ></Swipeable>
     </div>
@@ -84,7 +84,7 @@ export default function DemoPage() {
             onChange={event => {
               setEnabled(event.target.checked);
             }}
-          />{" "}
+          />{' '}
           Enabled
         </label>
       </div>
