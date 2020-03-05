@@ -1,6 +1,18 @@
-const TOO_HIGH = 1;
-const TOO_LOW = -1;
-const OPTIMAL = 0;
+export enum BinarySearchResult {
+  Low = -1,
+  Optimal = 0,
+  High = 1
+}
+
+interface BinarySearchOptions {
+  lowerBound: number;
+  upperBound: number;
+  measure: () => BinarySearchResult;
+  update: (value: number) => void;
+  limitPrecision?: number | false;
+  maxIterations?: number;
+  preference?: BinarySearchResult;
+}
 
 /**
  * Find an optimal value between `lowerBound` and `upperBound` by repeatedly
@@ -19,8 +31,8 @@ export default function binarySearch({
   update,
   limitPrecision = 6,
   maxIterations = 5,
-  preference = TOO_LOW
-}) {
+  preference = BinarySearchResult.Low
+}: BinarySearchOptions): number {
   let lastValue = upperBound;
   for (let i = 0; i < maxIterations; i++) {
     // Calculate the midpoint of the current upper and lower bounds.
@@ -39,11 +51,11 @@ export default function binarySearch({
     update(middle);
     const result = measure();
     switch (result) {
-      case TOO_LOW:
+      case BinarySearchResult.Low:
         // Increase the lower bound so we search for a higher value.
         lowerBound = middle;
         break;
-      case TOO_HIGH:
+      case BinarySearchResult.High:
         // Decrease the upper bound so we search for a lower value.
         upperBound = middle;
         break;
@@ -58,10 +70,10 @@ export default function binarySearch({
   // we landed on.
   let finalValue;
   switch (preference) {
-    case TOO_LOW:
+    case BinarySearchResult.Low:
       finalValue = lowerBound;
       break;
-    case TOO_HIGH:
+    case BinarySearchResult.High:
       finalValue = upperBound;
       break;
     default:
@@ -72,7 +84,3 @@ export default function binarySearch({
   }
   return finalValue;
 }
-
-binarySearch.TOO_HIGH = TOO_HIGH;
-binarySearch.TOO_LOW = TOO_LOW;
-binarySearch.OPTIMAL = OPTIMAL;
